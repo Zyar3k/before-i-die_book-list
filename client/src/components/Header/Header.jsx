@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { Container } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+
 import "./Header.scss";
 
+import { GlobalContext } from "../../context/GlobalProvider";
+
 const Header = () => {
-  const [isAdminDemo, setIsAdminDemo] = useState(false);
+  const { isAdmin, setIsAdmin } = useContext(GlobalContext);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const toggleMenu = () => setIsOpenMenu(!isOpenMenu);
@@ -16,7 +19,7 @@ const Header = () => {
       <Container maxWidth="xl" className="container">
         <div className="logo">
           {/* <NavLink to="/">LOGO</NavLink> */}
-          <button onClick={() => setIsAdminDemo(!isAdminDemo)}>LOGO</button>
+          <button onClick={() => setIsAdmin(!isAdmin)}>LOGO</button>
         </div>
         <nav className="nav">
           <section className={isOpenMenu ? "links active" : "links"}>
@@ -26,7 +29,7 @@ const Header = () => {
             <NavLink onClick={closeMenu} to="/statistic">
               Statistic
             </NavLink>
-            {isAdminDemo && (
+            {isAdmin && (
               <>
                 <NavLink onClick={closeMenu} to="/admin/books">
                   Dashboard
