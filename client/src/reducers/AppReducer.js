@@ -6,6 +6,7 @@ export default function appReducer(state, action) {
       return {
         loading: false,
         books: action.payload,
+        all: true,
         error: "",
       };
     case FETCH_ERROR:

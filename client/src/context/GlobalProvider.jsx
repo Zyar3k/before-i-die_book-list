@@ -7,6 +7,7 @@ import { FETCH_ERROR, FETCH_SUCCESS } from "../reducers/reducerVars";
 
 const initialState = {
   books: [],
+  all: true,
 };
 
 export const GlobalContext = createContext(initialState);
@@ -31,7 +32,7 @@ const StoreProvider = ({ children }) => {
   }, []);
   return (
     <GlobalContext.Provider
-      value={{ state, books: state.books, isAdmin, setIsAdmin }}
+      value={{ state, books: state.books, isAdmin, setIsAdmin, all: state.all }}
     >
       {children}
     </GlobalContext.Provider>
