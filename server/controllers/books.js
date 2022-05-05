@@ -2,7 +2,8 @@ const Book = require("../models/Book");
 const { StatusCodes } = require("http-status-codes");
 
 const getAllBooks = async (req, res) => {
-  res.send("get all Books");
+  const books = await Book.find().sort("createdAt");
+  res.status(StatusCodes.OK).json(books);
 };
 
 const getBook = async (req, res) => {
