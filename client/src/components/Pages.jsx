@@ -7,12 +7,13 @@ import {
   Login,
   Dashboard,
 } from "../admin/index";
+import { Container } from "@mui/material";
 
 const Pages = () => {
   return (
-    <div>
+    <Container maxWidth="xl">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} exact={true} />
         <Route path="/:id" element={<BookDetails />} />
         <Route path="/statistic" element={<Statistic />} />
         <Route path="/admin/books" element={<Dashboard />} exact={true} />
@@ -21,7 +22,7 @@ const Pages = () => {
         <Route path="/admin/books/create" element={<CreateBook />} />
         <Route path="/admin/auth/login" element={<Login />} />
       </Routes>
-    </div>
+    </Container>
   );
 };
 
