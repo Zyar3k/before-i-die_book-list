@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+import { AdminHeader } from "./admin";
+import Pages from "./components/Pages.jsx";
+import Header from "./views/Header/Header";
 
 function App() {
+  const [adminPanel, setAdminPanel] = useState(false);
+  const location = useLocation();
+  const path = location.pathname.substring(0, 6);
+
+  useEffect(() => {
+    if (path === "/admin") {
+      setAdminPanel(true);
+    } else {
+      setAdminPanel(false);
+    }
+  }, [location]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {adminPanel ? <AdminHeader /> : <Header />}
+      <Pages />
     </div>
   );
 }
