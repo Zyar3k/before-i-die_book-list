@@ -1,5 +1,6 @@
 const Book = require("../models/Book");
 const { StatusCodes } = require("http-status-codes");
+const { NotFoundError } = require("../errors");
 
 const getAllBooks = async (req, res) => {
   const books = await Book.find().sort("createdAt");
@@ -7,7 +8,16 @@ const getAllBooks = async (req, res) => {
 };
 
 const getBook = async (req, res) => {
-  res.send("get Book");
+  const {
+    //   user: { userId }, // optional, later
+    params: { id: bookId },
+  } = req;
+
+  const book = await Book.findOne({ _id: bookId });
+  if (!book) {
+    throw new NotFoundError(`Book with id ${bookId} not found`);
+  }
+  res.status(StatusCodes.OK).json({ book });
 };
 
 const createBook = async (req, res) => {
