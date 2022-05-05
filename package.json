@@ -15,5 +15,8 @@
   "homepage": "https://github.com/Zyar3k/before-i-die_book-list#readme",
   "devDependencies": {
     "npm-run-all": "^4.1.5"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
   }
 }
