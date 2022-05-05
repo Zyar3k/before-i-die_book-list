@@ -11,7 +11,7 @@ const Home = () => {
       ) : (
         <>
           {books.map((book) => (
-            <p>{book.title}</p>
+            <p key={book._id}>{book.title}</p>
           ))}
         </>
       )}

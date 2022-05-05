@@ -22,9 +22,9 @@ const Dashboard = () => {
       setDisplayData(books);
     }
   }, [books]);
-  // useEffect(() => {
-  //   if (!isAdmin) window.location.href = "/";
-  // }, []);
+  useEffect(() => {
+    if (!isAdmin) window.location.href = "/";
+  }, []);
   return (
     <Stack spacing={2}>
       {books.length === 0 ? (

@@ -15,6 +15,8 @@ export const GlobalContext = createContext(initialState);
 const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [isAdmin, setIsAdmin] = useState(false);
+  const myStorage = window.localStorage;
+  const token = myStorage.getItem("adminToken");
 
   const fetchData = async () => {
     axios
@@ -27,12 +29,29 @@ const StoreProvider = ({ children }) => {
       });
   };
 
+  const adminLogin = async () => {
+    if (token) {
+      setIsAdmin(true);
+    } else {
+      setIsAdmin(false);
+    }
+  };
+
   useEffect(() => {
     fetchData();
+    adminLogin();
   }, []);
   return (
     <GlobalContext.Provider
-      value={{ state, books: state.books, isAdmin, setIsAdmin, all: state.all }}
+      value={{
+        state,
+        books: state.books,
+        isAdmin,
+        setIsAdmin,
+        all: state.all,
+        token,
+        myStorage,
+      }}
     >
       {children}
     </GlobalContext.Provider>

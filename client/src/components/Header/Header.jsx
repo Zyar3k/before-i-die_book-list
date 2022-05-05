@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Container } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -9,11 +9,18 @@ import "./Header.scss";
 import { GlobalContext } from "../../context/GlobalProvider";
 
 const Header = () => {
-  const { isAdmin, setIsAdmin } = useContext(GlobalContext);
+  const { isAdmin, setIsAdmin, myStorage } = useContext(GlobalContext);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-
+  const navigate = useNavigate();
   const toggleMenu = () => setIsOpenMenu(!isOpenMenu);
   const closeMenu = () => setIsOpenMenu(false);
+
+  const logout = () => {
+    setIsAdmin(false);
+    myStorage.removeItem("adminToken");
+    navigate("/");
+    closeMenu();
+  };
   return (
     <header className="header">
       <Container maxWidth="xl" className="container">
@@ -42,10 +49,15 @@ const Header = () => {
                 </NavLink>
               </>
             )}
-
-            <NavLink onClick={closeMenu} to="/admin/auth/login">
-              Login
-            </NavLink>
+            {isAdmin ? (
+              <NavLink onClick={logout} to="/">
+                Logout
+              </NavLink>
+            ) : (
+              <NavLink onClick={closeMenu} to="/admin/auth/login">
+                Login
+              </NavLink>
+            )}
           </section>
         </nav>
         <button className="mobileIcons" onClick={toggleMenu}>
