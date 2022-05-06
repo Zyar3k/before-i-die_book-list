@@ -13,9 +13,9 @@ import {
   Divider,
   Snackbar,
 } from "@mui/material";
-import { ButtonComp, Check, Rat, Field } from "./components";
 import { GlobalContext } from "../../context/GlobalProvider";
 import DialogComponent from "../../common/DialogComponent/DialogComponent";
+import { Button, Checkbox, TextField, Stars } from "../../common";
 
 const SnackbarAlert = forwardRef(function SnackbarAlert(props, ref) {
   return <Alert elevation={6} ref={ref} {...props} />;
@@ -23,7 +23,7 @@ const SnackbarAlert = forwardRef(function SnackbarAlert(props, ref) {
 
 const BookActions = () => {
   const { token, books, fetchData, isAdmin } = useContext(GlobalContext);
-  const [book, setBook] = useState();
+  const [book, setBook] = useState({});
   const [deleteAccept, setDeleteAccept] = useState(false);
   const [open, setOpen] = useState(false);
   const [freeze, setFreeze] = useState(false);
@@ -54,32 +54,18 @@ const BookActions = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {
-      title,
-      author: { name, lastName },
-      page,
-      list,
-      desc,
-      link,
-      readed,
-      available,
-      adminRating,
-      rating,
-    } = book;
-
     const editedBook = {
-      title,
-      author: { name, lastName },
-      page,
-      list,
-      desc,
-      link,
-      readed,
-      available,
-      adminRating,
-      rating,
+      title: book.title,
+      author: { name: book.author.name, lastName: book.author.lastName },
+      page: book.page,
+      list: book.list,
+      desc: book.desc,
+      link: book.link,
+      readed: book.readed,
+      available: book.available,
+      adminRating: book.adminRating,
+      rating: book.rating,
     };
-
     try {
       const response = await request.patch(`/admin/books/${id}`, editedBook, {
         headers: {
@@ -122,40 +108,38 @@ const BookActions = () => {
               onSubmit={handleSubmit}
               style={{ width: "100%" }}
             >
-              <Stack mb={1}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  {inputLabels.map((label) => (
-                    <Field label={label} book={book} setBook={setBook} />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  justifyContent: "space-between",
+                }}
+              >
+                {inputLabels.map((label) => (
+                  <TextField label={label} book={book} setBook={setBook} />
+                ))}
+              </Box>
+              <FormControl margin="dense">
+                <FormLabel>Info</FormLabel>
+                <FormGroup row>
+                  {checkboxLabels.map((label) => (
+                    <Checkbox label={label} setBook={setBook} book={book} />
                   ))}
-                </Box>
-                <FormControl margin="dense">
-                  <FormLabel>Info</FormLabel>
-                  <FormGroup row>
-                    {checkboxLabels.map((label) => (
-                      <Check label={label} setBook={setBook} book={book} />
-                    ))}
-                  </FormGroup>
-                </FormControl>
-                <Divider />
-                <Stack
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                  direction={{ xs: "column", sm: "row" }}
-                  spacing={{ xs: 1, sm: 2, md: 4 }}
-                  m={2}
-                >
-                  {starsLabels.map((label) => (
-                    <Rat label={label} book={book} setBook={setBook} />
-                  ))}
-                </Stack>
+                </FormGroup>
+              </FormControl>
+              <Divider />
+              <Stack
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                direction={{ xs: "column", sm: "row" }}
+                spacing={{ xs: 1, sm: 2, md: 4 }}
+                m={2}
+              >
+                {starsLabels.map((label) => (
+                  <Stars label={label} book={book} setBook={setBook} />
+                ))}
               </Stack>
               <Divider />
               <Stack
@@ -163,9 +147,9 @@ const BookActions = () => {
                 m={2}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
-                <ButtonComp freeze={freeze} text="Save" />
-                <ButtonComp freeze={freeze} text="Back" onClick={oneBack} />
-                <ButtonComp text="Delete" freeze={freeze} onClick={del} />
+                <Button freeze={freeze} text="Save" />
+                <Button freeze={freeze} text="Back" onClick={oneBack} />
+                <Button text="Delete" freeze={freeze} onClick={del} />
                 <DialogComponent
                   deleteAccept={deleteAccept}
                   cancelDel={cancelDel}

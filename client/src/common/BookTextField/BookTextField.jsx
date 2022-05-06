@@ -1,15 +1,28 @@
+import { useState, useEffect } from "react";
 import { TextField } from "@mui/material";
+import { useLocation } from "react-router-dom";
 
-const BATextField = ({ book, setBook, label }) => {
+const BookTextField = ({ book, setBook, label }) => {
+  const location = useLocation();
+  const [isEditMode, setIsEditMode] = useState(false);
+  const path = location.pathname.slice(-6);
   const labelLower = label.charAt(0).toLowerCase() + label.slice(1);
   const required = labelLower === "desc" ? false : true;
   const width = labelLower === "desc" ? "100%" : "400px";
   let value;
 
-  if (labelLower === "name" || labelLower === "lastName") {
-    value = book.author[labelLower];
+  if (isEditMode) {
+    if (labelLower === "name" || labelLower === "lastName") {
+      value = book.author[labelLower];
+    } else {
+      value = book[labelLower];
+    }
   } else {
-    value = book[labelLower];
+    if (labelLower !== "name" || labelLower !== "lastName") {
+      value = book[labelLower];
+    } else {
+      value = book.author[labelLower];
+    }
   }
 
   const handleOnChange = (e) => {
@@ -22,6 +35,14 @@ const BATextField = ({ book, setBook, label }) => {
       setBook({ ...book, [labelLower]: e.target.value });
     }
   };
+
+  useEffect(() => {
+    if (path === "create") {
+      setIsEditMode(false);
+    } else {
+      setIsEditMode(true);
+    }
+  }, [path]);
 
   return (
     <TextField
@@ -38,4 +59,4 @@ const BATextField = ({ book, setBook, label }) => {
   );
 };
 
-export default BATextField;
+export default BookTextField;

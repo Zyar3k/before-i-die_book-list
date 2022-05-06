@@ -1,4 +1,4 @@
-import { useState, useRef, forwardRef, useContext, useEffect } from "react";
+import { useState, forwardRef, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import request from "../../helpers/request";
 import {
@@ -15,11 +15,7 @@ import {
 import { inputLabels, checkboxLabels, starsLabels } from "../../vars/vars";
 
 import { GlobalContext } from "../../context/GlobalProvider";
-
-import CBTextField from "./components/CBTextField";
-import CBRating from "./components/CBRating";
-import CBCheckbox from "./components/CBCheckbox";
-import CBActionButton from "./components/CBActionButton";
+import { Button, Checkbox, TextField, Stars } from "../../common";
 
 const SnackbarAlert = forwardRef(function SnackbarAlert(props, ref) {
   return <Alert elevation={6} ref={ref} {...props} />;
@@ -32,7 +28,7 @@ const CreateBook = () => {
 
   const navigate = useNavigate();
 
-  const [newBook, setNewBook] = useState();
+  const [newBook, setNewBook] = useState({});
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -45,8 +41,7 @@ const CreateBook = () => {
     e.preventDefault();
     const {
       title,
-      name,
-      lastName,
+      author: { name, lastName },
       page,
       list,
       desc,
@@ -69,7 +64,6 @@ const CreateBook = () => {
       adminRating,
       rating,
     };
-    console.log(book);
 
     try {
       await request.post("/admin/books/create", book, {
@@ -96,8 +90,9 @@ const CreateBook = () => {
     <>
       <Stack mt={2} style={{ display: "flex", alignItems: "center" }}>
         <Typography variant="h6" mb={2}>
-          Dodaj książkę
+          Add book
         </Typography>
+
         <Box component="form" onSubmit={handleSubmit} style={{ width: "100%" }}>
           <Stack mb={1}>
             <Box
@@ -107,26 +102,16 @@ const CreateBook = () => {
                 justifyContent: "space-between",
               }}
             >
-              {inputLabels.map((label, index) => (
-                <CBTextField
-                  key={index}
-                  label={label}
-                  newBook={newBook}
-                  setNewBook={setNewBook}
-                />
+              {inputLabels.map((label) => (
+                <TextField label={label} book={newBook} setBook={setNewBook} />
               ))}
             </Box>
 
             <FormControl margin="dense">
               <FormLabel>Info</FormLabel>
               <FormGroup row>
-                {checkboxLabels.map((label, index) => (
-                  <CBCheckbox
-                    key={index}
-                    label={label}
-                    newBook={newBook}
-                    setNewBook={setNewBook}
-                  />
+                {checkboxLabels.map((label) => (
+                  <Checkbox label={label} book={newBook} setBook={setNewBook} />
                 ))}
               </FormGroup>
             </FormControl>
@@ -141,11 +126,11 @@ const CreateBook = () => {
               m={2}
             >
               {starsLabels.map((label, index) => (
-                <CBRating
+                <Stars
                   key={index}
                   label={label}
-                  newBook={newBook}
-                  setNewBook={setNewBook}
+                  book={newBook}
+                  setBook={setNewBook}
                 />
               ))}
             </Stack>
@@ -156,10 +141,11 @@ const CreateBook = () => {
             m={2}
             sx={{ display: "flex", justifyContent: "center" }}
           >
-            <CBActionButton freeze={freeze} text="Add" />
-            <CBActionButton freeze={freeze} text="Back" onClick={oneBack} />
+            <Button freeze={freeze} text="Add" />
+            <Button freeze={freeze} text="Back" onClick={oneBack} />
           </Stack>
         </Box>
+
         <Snackbar open={open} autoHideDuration={1800} onClose={handleClose}>
           <SnackbarAlert onClose={handleClose} severity="success">
             Book added
@@ -171,5 +157,3 @@ const CreateBook = () => {
 };
 
 export default CreateBook;
-
-// 289

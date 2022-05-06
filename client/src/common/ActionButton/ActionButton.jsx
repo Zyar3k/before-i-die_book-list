@@ -1,9 +1,9 @@
 import { Button } from "@mui/material";
 
-const BAActionButton = ({ text, freeze, onClick }) => {
+const ActionButton = ({ text, freeze, onClick }) => {
   let newColor;
   let newType;
-  if (text === "Save") {
+  if (text === "Save" || text === "Add") {
     newColor = "success";
     newType = "submit";
   } else if (text === "Back") {
@@ -28,4 +28,4 @@ const BAActionButton = ({ text, freeze, onClick }) => {
   );
 };
 
-export default BAActionButton;
+export default ActionButton;

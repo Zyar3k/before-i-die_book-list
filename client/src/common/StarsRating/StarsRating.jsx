@@ -2,7 +2,7 @@ import { Rating, FormLabel, Box } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
-const BARating = ({ book, setBook, label }) => {
+const StarsRating = ({ book, setBook, label }) => {
   const check = label.length > 4;
   let setByLabel;
   if (check) {
@@ -31,4 +31,4 @@ const BARating = ({ book, setBook, label }) => {
   );
 };
 
-export default BARating;
+export default StarsRating;
