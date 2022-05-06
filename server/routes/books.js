@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const authenticateUser = require("../middleware/authentication");
 
 const {
   getAllBooks,
@@ -9,7 +10,12 @@ const {
   updateBook,
 } = require("../controllers/books");
 
-router.route("/").get(getAllBooks).post(createBook);
-router.route("/:id").delete(deleteBook).patch(updateBook).get(getBook);
+router.route("/").get(getAllBooks);
+router.route("/create").post(authenticateUser, createBook);
+router
+  .route("/:id")
+  .get(getBook)
+  .delete(authenticateUser, deleteBook)
+  .patch(authenticateUser, updateBook);
 
 module.exports = router;
