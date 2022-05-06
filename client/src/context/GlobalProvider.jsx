@@ -38,8 +38,8 @@ const StoreProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchData();
     adminLogin();
+    fetchData();
   }, []);
   return (
     <GlobalContext.Provider
@@ -51,6 +51,7 @@ const StoreProvider = ({ children }) => {
         all: state.all,
         token,
         myStorage,
+        fetchData,
       }}
     >
       {children}
