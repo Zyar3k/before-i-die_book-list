@@ -1,4 +1,4 @@
-import BookActions from "./BookActions";
+import BookActions from "./BookActions/BookActions";
 import CreateBook from "./CreateBook";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
