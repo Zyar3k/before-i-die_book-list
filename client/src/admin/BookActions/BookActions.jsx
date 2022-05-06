@@ -4,7 +4,6 @@ import request from "../../helpers/request";
 import {
   Box,
   Typography,
-  Button,
   Stack,
   FormControl,
   FormLabel,
@@ -12,18 +11,10 @@ import {
   Alert,
   Divider,
   Snackbar,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
 } from "@mui/material";
-import BATextField from "./components/BATextField";
-import BACheckbox from "./components/BACheckbox";
-import BARating from "./components/BARating";
-import BAActionButton from "./components/BAActionButton";
-
+import { ButtonComp, Check, Rat, Field } from "./components";
 import { GlobalContext } from "../../context/GlobalProvider";
+import DialogComponent from "../../common/DialogComponent/DialogComponent";
 
 const SnackbarAlert = forwardRef(function SnackbarAlert(props, ref) {
   return <Alert elevation={6} ref={ref} {...props} />;
@@ -35,7 +26,6 @@ const BookActions = () => {
   const [deleteAccept, setDeleteAccept] = useState(false);
   const [open, setOpen] = useState(false);
   const [freeze, setFreeze] = useState(false);
-
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -45,6 +35,17 @@ const BookActions = () => {
     }
     setOpen(false);
   };
+  const inputLabels = [
+    "Title",
+    "Link",
+    "Name",
+    "LastName",
+    "Page",
+    "List",
+    "Desc",
+  ];
+  const checkboxLabels = ["Readed", "Available"];
+  const starsLabels = ["Admin rank", "Rank"];
 
   const handleDelete = async () => {
     await request.delete(`/admin/books/${id}`, {
@@ -59,6 +60,7 @@ const BookActions = () => {
 
   const oneBack = () => navigate(-1);
   const del = () => setDeleteAccept(true);
+  const cancelDel = () => setDeleteAccept(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -117,18 +119,6 @@ const BookActions = () => {
     if (!isAdmin) window.location.href = "/";
   }, []);
 
-  const inputLabels = [
-    "Title",
-    "Link",
-    "Name",
-    "LastName",
-    "Page",
-    "List",
-    "Desc",
-  ];
-  const checkboxLabels = ["Readed", "Available"];
-  const starsLabels = ["Admin rank", "Rank"];
-
   return (
     <>
       {isAdmin && (
@@ -151,15 +141,14 @@ const BookActions = () => {
                   }}
                 >
                   {inputLabels.map((label) => (
-                    <BATextField label={label} book={book} setBook={setBook} />
+                    <Field label={label} book={book} setBook={setBook} />
                   ))}
                 </Box>
-
                 <FormControl margin="dense">
                   <FormLabel>Info</FormLabel>
                   <FormGroup row>
                     {checkboxLabels.map((label) => (
-                      <BACheckbox label={label} setBook={setBook} book={book} />
+                      <Check label={label} setBook={setBook} book={book} />
                     ))}
                   </FormGroup>
                 </FormControl>
@@ -174,7 +163,7 @@ const BookActions = () => {
                   m={2}
                 >
                   {starsLabels.map((label) => (
-                    <BARating label={label} book={book} setBook={setBook} />
+                    <Rat label={label} book={book} setBook={setBook} />
                   ))}
                 </Stack>
               </Stack>
@@ -184,32 +173,14 @@ const BookActions = () => {
                 m={2}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
-                <BAActionButton freeze={freeze} text="Save" />
-                <BAActionButton freeze={freeze} text="Back" onClick={oneBack} />
-                <BAActionButton text="Delete" freeze={freeze} onClick={del} />
-
-                <Dialog
-                  open={deleteAccept}
-                  aria-labelledby="dialog-title"
-                  aria-describedby="dialog-description"
-                  onClose={() => setDeleteAccept(false)}
-                >
-                  <DialogTitle id="dialog-title">Delete?</DialogTitle>
-                  <DialogContent>
-                    <DialogContentText id="dialog-description">
-                      Do you want to delete an item? The change will be
-                      irreversible.
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button onClick={() => setDeleteAccept(false)}>
-                      Cofnij
-                    </Button>
-                    <Button autoFocus onClick={handleDelete}>
-                      Confirm
-                    </Button>
-                  </DialogActions>
-                </Dialog>
+                <ButtonComp freeze={freeze} text="Save" />
+                <ButtonComp freeze={freeze} text="Back" onClick={oneBack} />
+                <ButtonComp text="Delete" freeze={freeze} onClick={del} />
+                <DialogComponent
+                  deleteAccept={deleteAccept}
+                  cancelDel={cancelDel}
+                  handleDelete={handleDelete}
+                />
               </Stack>
             </Box>
           )}
