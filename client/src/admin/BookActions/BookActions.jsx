@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState, forwardRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import request from "../../helpers/request";
+import { inputLabels, checkboxLabels, starsLabels } from "../../vars/vars";
 import {
   Box,
   Typography,
@@ -35,17 +36,6 @@ const BookActions = () => {
     }
     setOpen(false);
   };
-  const inputLabels = [
-    "Title",
-    "Link",
-    "Name",
-    "LastName",
-    "Page",
-    "List",
-    "Desc",
-  ];
-  const checkboxLabels = ["Readed", "Available"];
-  const starsLabels = ["Admin rank", "Rank"];
 
   const handleDelete = async () => {
     await request.delete(`/admin/books/${id}`, {

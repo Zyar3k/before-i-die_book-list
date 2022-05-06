@@ -1,4 +1,4 @@
-import { FETCH_ERROR, FETCH_SUCCESS } from "./reducerVars";
+import { FETCH_ERROR, FETCH_SUCCESS } from "../vars/vars";
 
 export default function appReducer(state, action) {
   switch (action.type) {

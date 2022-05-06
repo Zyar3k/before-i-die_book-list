@@ -3,7 +3,7 @@ import axios from "axios";
 import { BASE_URL } from "../configURL";
 
 import appReducer from "../reducers/AppReducer";
-import { FETCH_ERROR, FETCH_SUCCESS } from "../reducers/reducerVars";
+import { FETCH_ERROR, FETCH_SUCCESS } from "../vars/vars";
 
 const initialState = {
   books: [],
