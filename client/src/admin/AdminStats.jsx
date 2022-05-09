@@ -10,7 +10,9 @@ const AdminStats = () => {
 
   return (
     <Stack m={2} justifyContent="center">
-      <Typography variant="h4">Stats</Typography>
+      <Typography variant="h4" textAlign="center">
+        Stats
+      </Typography>
       <Box
         padding={2}
         sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}

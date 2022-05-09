@@ -10,6 +10,7 @@ const StarsRating = ({ book, setBook, label }) => {
   } else {
     setByLabel = "rating";
   }
+
   return (
     <Box
       sx={{

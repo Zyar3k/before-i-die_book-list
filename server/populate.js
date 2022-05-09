@@ -4,7 +4,7 @@ const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD
 const connectDB = require("./db/connect");
 const Book = require("./models/book");
 
-const jsonBooks = require("./finalDB.json");
+const jsonBooks = require("./dbtest.json");
 
 const start = async () => {
   try {

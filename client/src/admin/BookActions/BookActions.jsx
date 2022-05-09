@@ -11,6 +11,7 @@ import {
   FormGroup,
   Alert,
   Divider,
+  FormControlLabel,
   Snackbar,
 } from "@mui/material";
 import { GlobalContext } from "../../context/GlobalProvider";
@@ -66,6 +67,7 @@ const BookActions = () => {
       adminRating: book.adminRating,
       rating: book.rating,
     };
+
     try {
       const response = await request.patch(`/admin/books/${id}`, editedBook, {
         headers: {
@@ -102,62 +104,62 @@ const BookActions = () => {
           <Typography variant="h6" mb={2}>
             Edit book
           </Typography>
-          {book && (
+
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            style={{ width: "100%" }}
+          >
             <Box
-              component="form"
-              onSubmit={handleSubmit}
-              style={{ width: "100%" }}
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+              }}
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  justifyContent: "space-between",
-                }}
-              >
-                {inputLabels.map((label) => (
-                  <TextField label={label} book={book} setBook={setBook} />
-                ))}
-              </Box>
-              <FormControl margin="dense">
-                <FormLabel>Info</FormLabel>
-                <FormGroup row>
-                  {checkboxLabels.map((label) => (
-                    <Checkbox label={label} setBook={setBook} book={book} />
-                  ))}
-                </FormGroup>
-              </FormControl>
-              <Divider />
-              <Stack
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-                direction={{ xs: "column", sm: "row" }}
-                spacing={{ xs: 1, sm: 2, md: 4 }}
-                m={2}
-              >
-                {starsLabels.map((label) => (
-                  <Stars label={label} book={book} setBook={setBook} />
-                ))}
-              </Stack>
-              <Divider />
-              <Stack
-                direction={{ xs: "column", sm: "row" }}
-                m={2}
-                sx={{ display: "flex", justifyContent: "center" }}
-              >
-                <Button freeze={freeze} text="Save" />
-                <Button freeze={freeze} text="Back" onClick={oneBack} />
-                <Button text="Delete" freeze={freeze} onClick={del} />
-                <DialogComponent
-                  deleteAccept={deleteAccept}
-                  cancelDel={cancelDel}
-                  handleDelete={handleDelete}
-                />
-              </Stack>
+              {inputLabels.map((label) => (
+                <TextField label={label} book={book} setBook={setBook} />
+              ))}
             </Box>
-          )}
+            <FormControl margin="dense">
+              <FormLabel>Info</FormLabel>
+              <FormGroup row>
+                {checkboxLabels.map((label) => (
+                  <Checkbox label={label} setBook={setBook} book={book} />
+                ))}
+              </FormGroup>
+            </FormControl>
+            <Divider />
+            <Stack
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+              direction={{ xs: "column", sm: "row" }}
+              spacing={{ xs: 1, sm: 2, md: 4 }}
+              m={2}
+            >
+              {starsLabels.map((label) => (
+                <Stars label={label} book={book} setBook={setBook} />
+              ))}
+            </Stack>
+            <Divider />
+            <Stack
+              direction={{ xs: "column", sm: "row" }}
+              m={2}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
+              <Button freeze={freeze} text="Save" />
+              <Button freeze={freeze} text="Back" onClick={oneBack} />
+              <Button text="Delete" freeze={freeze} onClick={del} />
+              <DialogComponent
+                deleteAccept={deleteAccept}
+                cancelDel={cancelDel}
+                handleDelete={handleDelete}
+              />
+            </Stack>
+          </Box>
+
           <Snackbar open={open} autoHideDuration={1800} onClose={handleClose}>
             <SnackbarAlert onClose={handleClose} severity="success">
               The book has been saved

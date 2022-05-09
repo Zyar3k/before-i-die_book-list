@@ -4,16 +4,26 @@ const BookCheckbox = ({ label, setBook, book }) => {
   const labelLower = label.charAt(0).toLowerCase() + label.slice(1);
 
   return (
-    <FormControlLabel
-      label={label}
-      control={
-        <Checkbox
-          type="checkbox"
-          checked={book ? book[labelLower] : false}
-          onChange={(e) => setBook({ ...book, [labelLower]: e.target.checked })}
-        />
-      }
-    />
+    <>
+      {/* <FormControlLabel
+        label={label}
+        control={
+          <Checkbox
+            type="checkbox"
+            checked={book ? book[labelLower] : false}
+            onChange={(e) =>
+              setBook({ ...book, [labelLower]: e.target.checked })
+            }
+          />
+        }
+      /> */}
+      <input
+        type="checkbox"
+        checked={book[labelLower]}
+        onChange={(e) => setBook({ ...book, [labelLower]: e.target.checked })}
+      />
+      {label}
+    </>
   );
 };
 
