@@ -23,11 +23,7 @@ export default function appReducer(state, action) {
         filters: [],
       };
     case FETCH_ERROR:
-      return {
-        loading: false,
-        books: [],
-        error: "Something went wrong!",
-      };
+      return { loading: false, books: [], error: "Something went wrong!" };
     case SET_NAMES:
       const data = action.payload;
       let listNames = [];
@@ -43,10 +39,7 @@ export default function appReducer(state, action) {
           return element.list.includes(element);
         });
       });
-      return {
-        ...state,
-        lists: state.lists,
-      };
+      return { ...state, lists: state.lists };
     case ADD_BOOK_LIST_DATA:
       const bookData = action.payload;
       bookData.forEach((item) => {
@@ -55,10 +48,7 @@ export default function appReducer(state, action) {
         });
       });
       state.lists.lista = bookData;
-      return {
-        ...state,
-        lists: state.lists,
-      };
+      return { ...state, lists: state.lists };
     case SEARCH_BOOK:
       return {
         ...state,
@@ -72,10 +62,7 @@ export default function appReducer(state, action) {
         }),
       };
     case CLEAR_SEARCH:
-      return {
-        ...state,
-        searched: null,
-      };
+      return { ...state, searched: null };
 
     case FILTER:
       let { value, checked } = action.payload;
@@ -134,6 +121,7 @@ export default function appReducer(state, action) {
       return {
         ...state,
         filtered: [],
+        filters: [],
         all: true,
       };
 
@@ -166,9 +154,7 @@ export default function appReducer(state, action) {
           );
         }
       }
-      return {
-        ...state,
-      }; // 31
+      return { ...state };
     default:
       return state;
   }

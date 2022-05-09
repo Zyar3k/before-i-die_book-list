@@ -1,11 +1,18 @@
 import { FormControlLabel, Radio } from "@mui/material";
+import { useContext } from "react";
 
-const RadioController = ({ clearRadios, value }) => {
+import { GlobalContext } from "../../../context/GlobalProvider";
+
+const RadioController = ({ value }) => {
+  const { filters } = useContext(GlobalContext);
   const capitalizeValue = value.charAt(0).toUpperCase() + value.slice(1);
+
   return (
     <FormControlLabel
       value={value}
-      control={<Radio size="small" checked={clearRadios} />}
+      control={
+        <Radio size="small" checked={filters.includes(value) === true} />
+      }
       label={capitalizeValue}
     />
   );

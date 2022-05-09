@@ -6,7 +6,7 @@ import {
   IconButton,
 } from "@mui/material";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 
 import { GlobalContext } from "../../context/GlobalProvider";
 import { RadioGroup } from "../../common";
@@ -14,17 +14,10 @@ import { readAvaLabel } from "../../vars/vars";
 
 const Filter = () => {
   const { filter, clearFilter } = useContext(GlobalContext);
-  const [clearRadios, setClearRadios] = useState();
 
-  const handleOnChange = (e) => {
-    setClearRadios();
-    filter(e.target);
-  };
+  const handleOnChange = (e) => filter(e.target);
+  const handleRefresh = () => clearFilter();
 
-  const handleRefresh = () => {
-    clearFilter();
-    setClearRadios(null);
-  };
   return (
     <Box
       sx={{
@@ -52,11 +45,7 @@ const Filter = () => {
             </IconButton>
           </Tooltip>
           {readAvaLabel.map((label) => (
-            <RadioGroup
-              handleOnChange={handleOnChange}
-              clearRadios={clearRadios}
-              label={label}
-            />
+            <RadioGroup handleOnChange={handleOnChange} label={label} />
           ))}
         </FormGroup>
       </FormControl>
