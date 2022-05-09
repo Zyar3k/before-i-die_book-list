@@ -6,6 +6,7 @@ const SEARCH_BOOK = "SEARCH_BOOK";
 const CLEAR_SEARCH = "CLEAR_SEARCH";
 const FILTER = "FILTER";
 const CLEAR_FILTER = "CLEAR_FILTER";
+const SORT_BOOKS = "SORT_BOOKS";
 
 export {
   FETCH_SUCCESS,
@@ -16,6 +17,7 @@ export {
   CLEAR_SEARCH,
   FILTER,
   CLEAR_FILTER,
+  SORT_BOOKS,
 };
 
 export const inputLabels = [

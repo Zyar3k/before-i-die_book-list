@@ -9,12 +9,9 @@ import {
   CardHeader,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-
 import LoadingProgress from "../common/LoadingProgress/LoadingProgress";
-
+import { Filter, Search, Sort } from "../components/index";
 import { GlobalContext } from "../context/GlobalProvider";
-import Search from "../components/Search/Search";
-import Filter from "../components/Filter/Filter";
 
 const Dashboard = () => {
   const { books, isAdmin, all, searched, filtered } = useContext(GlobalContext);
@@ -45,6 +42,7 @@ const Dashboard = () => {
               flexWrap: "wrap",
             }}
           >
+            <Sort />
             <Search />
             <Filter />
           </Box>

@@ -7,6 +7,7 @@ import {
   CLEAR_SEARCH,
   FILTER,
   CLEAR_FILTER,
+  SORT_BOOKS,
 } from "../vars/vars";
 
 export default function appReducer(state, action) {
@@ -136,6 +137,38 @@ export default function appReducer(state, action) {
         all: true,
       };
 
+    case SORT_BOOKS:
+      const sortBy = action.payload;
+      let sortedList;
+      let sorted;
+      state.all ? (sortedList = state.books) : (sortedList = state.filtered);
+      const isUp = sortBy.slice(-2) === "Up";
+      if (isUp) {
+        const sortOpt = sortBy.slice(0, -2);
+        if (sortOpt === "lastName") {
+          sorted = sortedList.sort((a, b) =>
+            a.author[sortOpt] > b.author[sortOpt] ? "1" : "-1"
+          );
+        } else {
+          sorted = sortedList.sort((a, b) =>
+            a[sortOpt] > b[sortOpt] ? "1" : "-1"
+          );
+        }
+      } else {
+        const sortOpt = sortBy.slice(0, -4);
+        if (sortOpt === "lastName") {
+          sorted = sortedList.sort((a, b) =>
+            a.author[sortOpt] < b.author[sortOpt] ? "1" : "-1"
+          );
+        } else {
+          sorted = sortedList.sort((a, b) =>
+            a[sortOpt] < b[sortOpt] ? "1" : "-1"
+          );
+        }
+      }
+      return {
+        ...state,
+      }; // 31
     default:
       return state;
   }

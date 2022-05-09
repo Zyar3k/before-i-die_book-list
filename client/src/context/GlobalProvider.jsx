@@ -12,6 +12,7 @@ import {
   CLEAR_SEARCH,
   FILTER,
   CLEAR_FILTER,
+  SORT_BOOKS,
 } from "../vars/vars";
 
 const initialState = {
@@ -62,6 +63,9 @@ const StoreProvider = ({ children }) => {
   const clearFilter = () => {
     dispatch({ type: CLEAR_FILTER });
   };
+  const sortBooks = (data) => {
+    dispatch({ type: SORT_BOOKS, payload: data });
+  };
 
   const adminLogin = async () => {
     if (token) {
@@ -91,6 +95,7 @@ const StoreProvider = ({ children }) => {
         searched: state.searched,
         filters: state.filters,
         all: state.all,
+        sorted: state.sorted,
         token,
         myStorage,
         setIsAdmin,
@@ -99,6 +104,7 @@ const StoreProvider = ({ children }) => {
         clearSearch,
         filter,
         clearFilter,
+        sortBooks,
       }}
     >
       {children}
