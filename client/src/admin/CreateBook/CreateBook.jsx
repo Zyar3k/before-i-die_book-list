@@ -12,7 +12,7 @@ import {
   Alert,
   Snackbar,
 } from "@mui/material";
-import { inputLabels, checkboxLabels, starsLabels } from "../../vars/vars";
+import { inputLabels, readAvaLabel, starsLabels } from "../../vars/vars";
 
 import { GlobalContext } from "../../context/GlobalProvider";
 import { Button, Checkbox, TextField, Stars } from "../../common";
@@ -115,7 +115,7 @@ const CreateBook = () => {
             <FormControl margin="dense">
               <FormLabel>Info</FormLabel>
               <FormGroup row>
-                {checkboxLabels.map((label) => (
+                {readAvaLabel.map((label) => (
                   <Checkbox label={label} book={newBook} setBook={setNewBook} />
                 ))}
               </FormGroup>

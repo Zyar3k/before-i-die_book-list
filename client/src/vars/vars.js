@@ -27,5 +27,5 @@ export const inputLabels = [
   "List",
   "Desc",
 ];
-export const checkboxLabels = ["Readed", "Available"];
+export const readAvaLabel = ["Readed", "Available"];
 export const starsLabels = ["Admin rank", "Rank"];

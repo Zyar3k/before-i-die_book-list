@@ -5,6 +5,8 @@ import ActionButton from "./ActionButton/ActionButton";
 import BookCheckbox from "./BookCheckbox/BookCheckbox";
 import BookTextField from "./BookTextField/BookTextField";
 import CustomProgress from "./ProgressBar/ProgressBar.jsx";
+import RadioController from "./FilterComponents/RadioController/RadioController";
+import RadioGroup from "./FilterComponents/RadioGroup/RadioGroup";
 
 export {
   StarsRating as Stars,
@@ -14,4 +16,6 @@ export {
   BookCheckbox as Checkbox,
   BookTextField as TextField,
   CustomProgress,
+  RadioController,
+  RadioGroup,
 };

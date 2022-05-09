@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, forwardRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import request from "../../helpers/request";
-import { inputLabels, checkboxLabels, starsLabels } from "../../vars/vars";
+import { inputLabels, readAvaLabel, starsLabels } from "../../vars/vars";
 import {
   Box,
   Typography,
@@ -124,7 +124,7 @@ const BookActions = () => {
             <FormControl margin="dense">
               <FormLabel>Info</FormLabel>
               <FormGroup row>
-                {checkboxLabels.map((label) => (
+                {readAvaLabel.map((label) => (
                   <Checkbox label={label} setBook={setBook} book={book} />
                 ))}
               </FormGroup>
