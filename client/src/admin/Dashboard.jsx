@@ -14,18 +14,20 @@ import LoadingProgress from "../common/LoadingProgress/LoadingProgress";
 
 import { GlobalContext } from "../context/GlobalProvider";
 import Search from "../components/Search/Search";
+import Filter from "../components/Filter/Filter";
 
 const Dashboard = () => {
-  const { books, isAdmin, all, searched } = useContext(GlobalContext);
+  const { books, isAdmin, all, searched, filtered } = useContext(GlobalContext);
   const [displayData, setDisplayData] = useState(books);
-
   useEffect(() => {
     if (searched) {
       setDisplayData(searched);
-    } else if (all) {
+    } else if (all === true) {
       setDisplayData(books);
+    } else if (all !== true) {
+      setDisplayData(filtered);
     }
-  }, [books, searched]);
+  }, [books, searched, all, filtered]);
   useEffect(() => {
     if (!isAdmin) window.location.href = "/";
   }, []);
@@ -35,8 +37,15 @@ const Dashboard = () => {
         <LoadingProgress />
       ) : (
         <>
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             <Search />
+            <Filter />
           </Box>
           <Box
             spacing={2}

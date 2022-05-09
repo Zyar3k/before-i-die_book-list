@@ -29,7 +29,7 @@ const Search = () => {
         justifyContent: "center",
       }}
     >
-      <Tooltip title="Wyszukaj tytuł lub autora">
+      <Tooltip title="Search by title or author">
         <TextField
           label="Search"
           size="small"

@@ -10,6 +10,8 @@ import {
   ADD_BOOK_LIST_DATA,
   SEARCH_BOOK,
   CLEAR_SEARCH,
+  FILTER,
+  CLEAR_FILTER,
 } from "../vars/vars";
 
 const initialState = {
@@ -17,6 +19,8 @@ const initialState = {
   books: [],
   all: true,
   searched: null,
+  filtered: [],
+  filters: [],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -52,6 +56,13 @@ const StoreProvider = ({ children }) => {
     dispatch({ type: CLEAR_SEARCH });
   };
 
+  const filter = (data) => {
+    dispatch({ type: FILTER, payload: data });
+  };
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  };
+
   const adminLogin = async () => {
     if (token) {
       setIsAdmin(true);
@@ -76,14 +87,18 @@ const StoreProvider = ({ children }) => {
         books: state.books,
         isAdmin,
         lists: state.lists,
-        setIsAdmin,
+        filtered: state.filtered,
+        searched: state.searched,
+        filters: state.filters,
         all: state.all,
         token,
         myStorage,
+        setIsAdmin,
         fetchData,
         searchBook,
         clearSearch,
-        searched: state.searched,
+        filter,
+        clearFilter,
       }}
     >
       {children}
