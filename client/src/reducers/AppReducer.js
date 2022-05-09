@@ -3,6 +3,8 @@ import {
   FETCH_SUCCESS,
   SET_NAMES,
   ADD_BOOK_LIST_DATA,
+  SEARCH_BOOK,
+  CLEAR_SEARCH,
 } from "../vars/vars";
 
 export default function appReducer(state, action) {
@@ -51,6 +53,23 @@ export default function appReducer(state, action) {
       return {
         ...state,
         lists: state.lists,
+      };
+    case SEARCH_BOOK:
+      return {
+        ...state,
+        searched: state.books.filter((book) => {
+          return (
+            book.title.toLowerCase().includes(action.payload.toLowerCase()) ||
+            book.author.lastName
+              .toLowerCase()
+              .includes(action.payload.toLowerCase())
+          );
+        }),
+      };
+    case CLEAR_SEARCH:
+      return {
+        ...state,
+        searched: null,
       };
 
     default:

@@ -8,12 +8,15 @@ import {
   FETCH_SUCCESS,
   SET_NAMES,
   ADD_BOOK_LIST_DATA,
+  SEARCH_BOOK,
+  CLEAR_SEARCH,
 } from "../vars/vars";
 
 const initialState = {
   lists: { lista: [] },
   books: [],
   all: true,
+  searched: null,
 };
 
 export const GlobalContext = createContext(initialState);
@@ -41,6 +44,12 @@ const StoreProvider = ({ children }) => {
 
   const addBookListData = (data) => {
     dispatch({ type: ADD_BOOK_LIST_DATA, payload: data });
+  };
+  const searchBook = (id) => {
+    dispatch({ type: SEARCH_BOOK, payload: id });
+  };
+  const clearSearch = () => {
+    dispatch({ type: CLEAR_SEARCH });
   };
 
   const adminLogin = async () => {
@@ -72,6 +81,9 @@ const StoreProvider = ({ children }) => {
         token,
         myStorage,
         fetchData,
+        searchBook,
+        clearSearch,
+        searched: state.searched,
       }}
     >
       {children}
