@@ -3,9 +3,15 @@ import axios from "axios";
 import { BASE_URL } from "../configURL";
 
 import appReducer from "../reducers/AppReducer";
-import { FETCH_ERROR, FETCH_SUCCESS } from "../vars/vars";
+import {
+  FETCH_ERROR,
+  FETCH_SUCCESS,
+  SET_NAMES,
+  ADD_BOOK_LIST_DATA,
+} from "../vars/vars";
 
 const initialState = {
+  lists: { lista: [] },
   books: [],
   all: true,
 };
@@ -29,6 +35,14 @@ const StoreProvider = ({ children }) => {
       });
   };
 
+  const setNames = (data) => {
+    dispatch({ type: SET_NAMES, payload: data });
+  };
+
+  const addBookListData = (data) => {
+    dispatch({ type: ADD_BOOK_LIST_DATA, payload: data });
+  };
+
   const adminLogin = async () => {
     if (token) {
       setIsAdmin(true);
@@ -36,6 +50,11 @@ const StoreProvider = ({ children }) => {
       setIsAdmin(false);
     }
   };
+
+  useEffect(() => {
+    setNames(state.books);
+    addBookListData(state.books);
+  }, [state.books]);
 
   useEffect(() => {
     adminLogin();
@@ -47,6 +66,7 @@ const StoreProvider = ({ children }) => {
         state,
         books: state.books,
         isAdmin,
+        lists: state.lists,
         setIsAdmin,
         all: state.all,
         token,

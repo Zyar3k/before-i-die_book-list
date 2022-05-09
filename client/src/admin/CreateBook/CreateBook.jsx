@@ -102,8 +102,13 @@ const CreateBook = () => {
                 justifyContent: "space-between",
               }}
             >
-              {inputLabels.map((label) => (
-                <TextField label={label} book={newBook} setBook={setNewBook} />
+              {inputLabels.map((label, index) => (
+                <TextField
+                  key={index}
+                  label={label}
+                  book={newBook}
+                  setBook={setNewBook}
+                />
               ))}
             </Box>
 
