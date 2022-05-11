@@ -12,7 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import "./Sidebar.scss";
 
 const Sidebar = () => {
-  const [more, setMore] = useState(false);
+  const [more, setMore] = useState(true);
 
   return (
     <aside>

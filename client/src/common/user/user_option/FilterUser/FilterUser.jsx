@@ -1,20 +1,29 @@
+import { useContext } from "react";
+import { readAvaLabel } from "../../../../vars/vars";
 import CloseIcon from "@mui/icons-material/Close";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
+import { GlobalContext } from "../../../../context/GlobalProvider";
+import FilterOption from "./subcomponents/FilterOption";
 
 import "../user_option.scss";
 
 const FilterUser = ({ setOptionOpen }) => {
-  const filters = 0; // TODO: get filters from context
+  const { filter, clearFilter, filters } = useContext(GlobalContext);
+
+  const handleOnChange = (e) => filter(e.target);
+  const handleRefresh = () => clearFilter();
+
   return (
     <section className="optionSection">
       <button className="closeModalButton" onClick={() => setOptionOpen(false)}>
         <CloseIcon />
       </button>
       <h3 className="optionName">Filtry</h3>
-      {filters > 0 && (
+      {filters.length > 0 && (
         <div className="clearButtonWrapper">
           <label>
-            <button>
+            <button onClick={handleRefresh}>
               <HighlightOffIcon />
             </button>
             Usuń filtry
@@ -22,26 +31,13 @@ const FilterUser = ({ setOptionOpen }) => {
         </div>
       )}
       <ul className="ulOptions filter">
-        <li className="ulOptions__option">
-          <label>
-            <input name="readed-options" type="radio" />
-            Przeczytane
-          </label>
-          <label>
-            Nieprzeczytane
-            <input name="readed-options" type="radio" />
-          </label>
-        </li>
-        <li className="ulOptions__option">
-          <label>
-            <input name="available-options" type="radio" />
-            Dostępne
-          </label>
-          <label>
-            Niedostępne
-            <input name="available-options" type="radio" />
-          </label>
-        </li>
+        {readAvaLabel.map((label, index) => (
+          <FilterOption
+            key={index}
+            handleOnChange={handleOnChange}
+            label={label}
+          />
+        ))}
       </ul>
     </section>
   );

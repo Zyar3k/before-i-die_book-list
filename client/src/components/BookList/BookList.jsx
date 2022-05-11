@@ -5,7 +5,7 @@ import BookTile from "../BookTile/BookTile";
 import "./BookList.scss";
 
 const BookList = () => {
-  const { books, searched, all } = useContext(GlobalContext);
+  const { books, searched, all, filtered } = useContext(GlobalContext);
   const [displayData, setDisplayData] = useState(books);
 
   useEffect(() => {
@@ -13,8 +13,10 @@ const BookList = () => {
       setDisplayData(searched);
     } else if (all === true) {
       setDisplayData(books);
+    } else if (all !== true) {
+      setDisplayData(filtered);
     }
-  }, [books, searched, all]);
+  }, [books, searched, all, filtered]);
   return (
     <>
       <ul className="bookList">

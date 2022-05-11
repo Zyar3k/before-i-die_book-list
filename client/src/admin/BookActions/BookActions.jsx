@@ -11,11 +11,10 @@ import {
   FormGroup,
   Alert,
   Divider,
-  FormControlLabel,
   Snackbar,
 } from "@mui/material";
 import { GlobalContext } from "../../context/GlobalProvider";
-import DialogComponent from "../../common/DialogComponent/DialogComponent";
+import { DialogComponent } from "../../common/";
 import { Button, Checkbox, TextField, Stars } from "../../common";
 
 const SnackbarAlert = forwardRef(function SnackbarAlert(props, ref) {
