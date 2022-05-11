@@ -5,15 +5,15 @@ import {
   Tooltip,
   IconButton,
 } from "@mui/material";
-import RefreshIcon from "@mui/icons-material/Refresh";
 import { useContext } from "react";
-
-import { GlobalContext } from "../../context/GlobalProvider";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { RadioGroup } from "../../common";
 import { readAvaLabel } from "../../vars/vars";
 
+import { GlobalContext } from "../../context/GlobalProvider";
+
 const Filter = () => {
-  const { filter, clearFilter } = useContext(GlobalContext);
+  const { filter, clearFilter, filters } = useContext(GlobalContext);
 
   const handleOnChange = (e) => filter(e.target);
   const handleRefresh = () => clearFilter();
@@ -33,20 +33,19 @@ const Filter = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            marginLeft: "8px",
           }}
         >
-          <Tooltip title="All">
-            <IconButton
-              color="success"
-              onClick={handleRefresh}
-              sx={{ marginRight: "8px" }}
-            >
-              <RefreshIcon fontSize="120px" />
-            </IconButton>
-          </Tooltip>
           {readAvaLabel.map((label) => (
             <RadioGroup handleOnChange={handleOnChange} label={label} />
           ))}
+          {filters.length > 0 && (
+            <Tooltip title="Clear filters">
+              <IconButton color="error" onClick={handleRefresh}>
+                <HighlightOffIcon fontSize="120px" />
+              </IconButton>
+            </Tooltip>
+          )}
         </FormGroup>
       </FormControl>
     </Box>

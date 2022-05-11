@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 .header {
-  background-color: gray;
+  background-color: #42a5f5;
   height: 60px;
   position: sticky;
   top: 0;
@@ -17,7 +18,35 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      a {
+        text-decoration: none;
+        h1 {
+          color: white;
+          font-family: "Kaushan Script", cursive;
+          margin: 0;
+          padding: 0;
+          font-size: 36px;
+        }
+      }
     }
+  }
+
+  &.user {
+    background: #000428; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to left,
+      #004e92,
+      #000428
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to left,
+      rgba(0, 78, 146, 0.5),
+      rgba(0, 4, 40, 0.5)
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    box-shadow: 0 1px 4px rgba(255, 255, 255, 0.2);
   }
 }
 
