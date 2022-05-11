@@ -32,6 +32,10 @@
     color: rgba(255, 255, 255, 1);
     cursor: pointer;
   }
+
+  &__page {
+    margin-left: 8px;
+  }
 }
 
 @media (max-width: 800px) {

@@ -6,22 +6,27 @@ import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
 import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
 import StarTwoToneIcon from "@mui/icons-material/StarTwoTone";
 
+import { sortArray } from "../../vars/vars";
+
 import { GlobalContext } from "../../context/GlobalProvider";
 
-const iconArray = [
-  {
-    icon: <MenuBookTwoToneIcon />,
-    sortBy: "page",
-  },
-  {
-    icon: <PermIdentityTwoToneIcon />,
-    sortBy: "lastName",
-  },
-  {
-    icon: <StarTwoToneIcon />,
-    sortBy: "rating",
-  },
-];
+// const sortArray = [
+//   {
+//     icon: <MenuBookTwoToneIcon />,
+//     sortBy: "page",
+//     name: "Ilość stron",
+//   },
+//   {
+//     icon: <PermIdentityTwoToneIcon />,
+//     sortBy: "lastName",
+//     name: "Nazwisko autora",
+//   },
+//   {
+//     icon: <StarTwoToneIcon />,
+//     sortBy: "rating",
+//     name: "Ranking",
+//   },
+// ];
 
 const Sort = () => {
   const { sortBooks } = useContext(GlobalContext);
@@ -35,7 +40,7 @@ const Sort = () => {
         justifyContent: "center",
       }}
     >
-      {iconArray.map((item) => (
+      {sortArray.map((item) => (
         <Box
           sx={{
             display: "flex",

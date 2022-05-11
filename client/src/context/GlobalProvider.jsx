@@ -29,6 +29,7 @@ export const GlobalContext = createContext(initialState);
 const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isPageShowing, setIsPageShowing] = useState(false);
   const myStorage = window.localStorage;
   const token = myStorage.getItem("adminToken");
 
@@ -98,6 +99,8 @@ const StoreProvider = ({ children }) => {
         sorted: state.sorted,
         token,
         myStorage,
+        isPageShowing,
+        setIsPageShowing,
         setIsAdmin,
         fetchData,
         searchBook,

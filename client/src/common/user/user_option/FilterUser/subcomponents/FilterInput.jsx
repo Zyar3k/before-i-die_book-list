@@ -3,6 +3,8 @@ import { GlobalContext } from "../../../../../context/GlobalProvider";
 
 const FilterInput = ({ handleOnChange, label, value }) => {
   const { filters } = useContext(GlobalContext);
+  const checkUn = value.slice(0, 2);
+
   let test;
   switch (value) {
     case "readed":
@@ -22,7 +24,7 @@ const FilterInput = ({ handleOnChange, label, value }) => {
       test = "Brak danych";
   }
   return (
-    <label>
+    <label className={checkUn === "un" ? "" : "reverse"}>
       {test}
       <input
         name={`${label}-options`}

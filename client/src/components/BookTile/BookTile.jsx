@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useContext } from "react";
 import "./BookTile.scss";
 
+import { GlobalContext } from "../../context/GlobalProvider";
+
 const BookTile = ({ book }) => {
-  const [isPageShow, setIsPageShow] = useState(false);
+  const { isPageShowing } = useContext(GlobalContext);
+
   return (
     <article className="bookTile">
       <h3 className="bookTile__title">{book.title}</h3>
       <p className="bookTile__author">
         {`${book.author.name} ${book.author.lastName}`}
-        {isPageShow && <span className="bookTile__page">({book.page})</span>}
+        {isPageShowing && <span className="bookTile__page">({book.page})</span>}
       </p>
     </article>
   );

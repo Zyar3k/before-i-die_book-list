@@ -1,3 +1,9 @@
+// import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+// import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
+import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
+import StarTwoToneIcon from "@mui/icons-material/StarTwoTone";
+
 const FETCH_SUCCESS = "FETCH_SUCCESS";
 const FETCH_ERROR = "FETCH_ERROR";
 const SET_NAMES = "SET_NAMES";
@@ -31,3 +37,21 @@ export const inputLabels = [
 ];
 export const readAvaLabel = ["Readed", "Available"];
 export const starsLabels = ["Admin rank", "Rank"];
+
+export const sortArray = [
+  {
+    icon: <MenuBookTwoToneIcon />,
+    sortBy: "page",
+    name: "Ilość stron",
+  },
+  {
+    icon: <PermIdentityTwoToneIcon />,
+    sortBy: "lastName",
+    name: "Nazwisko autora",
+  },
+  {
+    icon: <StarTwoToneIcon />,
+    sortBy: "rating",
+    name: "Ranking",
+  },
+];
