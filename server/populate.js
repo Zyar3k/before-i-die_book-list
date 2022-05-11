@@ -5,6 +5,7 @@ const connectDB = require("./db/connect");
 const Book = require("./models/book");
 
 const jsonBooks = require("./dbtest.json");
+// const jsonBooks = require("./finalDB.json");
 
 const start = async () => {
   try {

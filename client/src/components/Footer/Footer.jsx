@@ -1,19 +1,22 @@
-import { useState } from "react";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useEffect, useState } from "react";
 
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import CloseIcon from "@mui/icons-material/Close";
+import { useLocation } from "react-router-dom";
+import {
+  SearchUser,
+  SortUser,
+  FilterUser,
+} from "../../common/user/user_option";
 
 import "./Footer.scss";
 
 const Footer = () => {
   const [optionOpen, setOptionOpen] = useState({
     filter: false,
-    sort: true,
+    sort: false,
     search: false,
   });
-  const filters = 10; // TODO: get filters from context
+  const location = useLocation();
+  const isBookList = location.pathname === "/";
 
   const openOneOption = (e) => {
     const option = e.target.value;
@@ -24,114 +27,40 @@ const Footer = () => {
       [option]: true,
     });
   };
+  useEffect(() => {}, [location.pathname]);
 
   return (
-    <footer>
-      <button value="filter" onClick={(e) => openOneOption(e)}>
-        Filtrowanie
-      </button>
-      <button value="sort" onClick={(e) => openOneOption(e)}>
-        Sortowanie
-      </button>
-      <button value="search" onClick={(e) => openOneOption(e)}>
-        Szukaj
-      </button>
-
-      {optionOpen.filter && (
-        <section>
+    <>
+      {isBookList && (
+        <footer>
           <button
-            className="closeModalButton"
-            onClick={() => setOptionOpen(false)}
+            className="optionButton"
+            value="filter"
+            onClick={(e) => openOneOption(e)}
           >
-            <CloseIcon />
+            Filtrowanie
+          </button>
+          <button
+            className="optionButton"
+            value="sort"
+            onClick={(e) => openOneOption(e)}
+          >
+            Sortowanie
+          </button>
+          <button
+            className="optionButton"
+            value="search"
+            onClick={(e) => openOneOption(e)}
+          >
+            Szukaj
           </button>
 
-          <ul className="filterOptions">
-            <li className="filterOptions__option">
-              <label>
-                <input name="readed-options" type="radio" />
-                Przeczytane
-              </label>
-              <label>
-                Nieprzeczytane
-                <input name="readed-options" type="radio" />
-              </label>
-            </li>
-            <li className="filterOptions__option">
-              <label>
-                <input name="available-options" type="radio" />
-                Dostępne
-              </label>
-              <label>
-                Niedostępne
-                <input name="available-options" type="radio" />
-              </label>
-            </li>
-            {filters > 0 && (
-              <li className="filterOptions__option">
-                <label>
-                  <button>
-                    <HighlightOffIcon />
-                  </button>
-                  Usuń filtry
-                </label>
-              </li>
-            )}
-          </ul>
-        </section>
+          {optionOpen.filter && <FilterUser setOptionOpen={setOptionOpen} />}
+          {optionOpen.sort && <SortUser setOptionOpen={setOptionOpen} />}
+          {optionOpen.search && <SearchUser setOptionOpen={setOptionOpen} />}
+        </footer>
       )}
-      {optionOpen.sort && (
-        <section>
-          <button
-            className="closeModalButton"
-            onClick={() => setOptionOpen(false)}
-          >
-            <CloseIcon />
-          </button>
-          <ul className="sortOptions">
-            <li className="sortOptions__option">
-              <button>
-                <KeyboardArrowUpIcon />
-              </button>
-              <p>Ilość stron</p>
-              <button>
-                <KeyboardArrowDownIcon />
-              </button>
-            </li>
-            <li className="sortOptions__option">
-              <button>
-                <KeyboardArrowUpIcon />
-              </button>
-              <p>Nazwisko autora</p>
-              <button>
-                <KeyboardArrowDownIcon />
-              </button>
-            </li>
-            <li className="sortOptions__option">
-              <button>
-                <KeyboardArrowUpIcon />
-              </button>
-              <p>Ranking</p>
-              <button>
-                <KeyboardArrowDownIcon />
-              </button>
-            </li>
-          </ul>
-        </section>
-      )}
-      {optionOpen.search && (
-        <section className="searchSection">
-          <button
-            className="closeModalButton"
-            onClick={() => setOptionOpen(false)}
-          >
-            <CloseIcon />
-          </button>
-          <h3>Wyszukaj książkę</h3>
-          <input className="searchSection__input" type="text" />
-        </section>
-      )}
-    </footer>
+    </>
   );
 };
 

@@ -65,11 +65,15 @@ const Header = () => {
               </>
             )}
             {isAdmin ? (
-              <NavLink onClick={logout} to="/">
+              <NavLink className="adminNavLink" onClick={logout} to="/">
                 Logout
               </NavLink>
             ) : (
-              <NavLink onClick={closeMenu} to="/admin/auth/login">
+              <NavLink
+                className="adminNavLink"
+                onClick={closeMenu}
+                to="/admin/auth/login"
+              >
                 Login
               </NavLink>
             )}
