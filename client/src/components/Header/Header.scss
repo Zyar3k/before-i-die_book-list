@@ -90,7 +90,7 @@
       flex-direction: column;
       justify-content: end;
       align-items: flex-end;
-      background-color: gray;
+      background-color: #42a5f5;
       left: -100%;
       top: 60px;
       height: calc(100vh - 60px);
@@ -106,6 +106,20 @@
         left: 0;
         transition: all 0.5s ease;
         z-index: 100;
+      }
+    }
+
+    &.user {
+      .links {
+        background: #000428;
+        background: -webkit-linear-gradient(to right, #004e92, #000428);
+        background: linear-gradient(
+          to right,
+          rgba(0, 78, 146, 0.8),
+          rgba(0, 4, 40, 0.8)
+        );
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
       }
     }
   }

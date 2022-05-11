@@ -32,7 +32,6 @@ const Header = () => {
   }, [path]);
 
   return (
-    // <header className="header user">
     <header className={isAdminPath ? "header" : "header user"}>
       <Container maxWidth="xl" className="container">
         <div className="logo">
@@ -41,7 +40,7 @@ const Header = () => {
           </NavLink>
           {/* <button onClick={() => setIsAdmin(!isAdmin)}>LOGO</button> */}
         </div>
-        <nav className="nav">
+        <nav className={isAdminPath ? "nav" : "nav user"}>
           <section className={isOpenMenu ? "links active" : "links"}>
             {isAdmin ? (
               <>

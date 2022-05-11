@@ -17,13 +17,13 @@ const Pages = () => {
 
   useEffect(() => {
     if (path === "admin") {
-      document.body.style.backgroundImage = "none";
+      document.body.style.background = "none";
     } else {
-      document.body.style.backgroundImage = `url(${bgd})`;
-      document.body.style.backgroundRepeat = "no-repeat";
-      document.body.style.backgroundSize = "cover";
-      document.body.style.backgroundPosition = "center";
-      document.body.style.backgroundAttachment = "fixed";
+      document.body.style.background = "#000428";
+      document.body.style.background =
+        "linear-gradient(to left,#004e92, #000428)";
+      document.body.style.background =
+        "linear-gradient( to left,#004e92, #000428)";
     }
   }, [path]);
   return (
