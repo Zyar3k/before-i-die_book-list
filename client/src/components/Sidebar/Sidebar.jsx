@@ -10,9 +10,10 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import IconButton from "@mui/material/IconButton";
 
 import "./Sidebar.scss";
+import SidebarInfo from "../../common/user/SidebarInfo/SidebarInfo";
 
 const Sidebar = () => {
-  const [more, setMore] = useState(true);
+  const [more, setMore] = useState(false);
 
   return (
     <aside>
@@ -26,11 +27,13 @@ const Sidebar = () => {
       >
         {more ? <ExpandLessIcon /> : <ExpandMoreIcon />}
       </IconButton>
-      {more && (
+      {more ? (
         <>
           <FilterUser />
           <SortUser />
         </>
+      ) : (
+        <SidebarInfo />
       )}
     </aside>
   );

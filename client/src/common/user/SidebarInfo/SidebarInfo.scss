@@ -1,0 +1,38 @@
+.sidebarInfo {
+  //   border: 1px solid red;
+  padding: 10px;
+
+  &__title {
+    font-family: "Kaushan Script", cursive;
+    font-size: 40px;
+  }
+
+  &__info {
+    text-align: left;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    font-size: 18px;
+
+    a {
+      margin-right: 4px;
+      display: inline-flex;
+      color: white;
+      text-decoration: none;
+
+      &:first-of-type {
+        margin-left: 4px;
+      }
+
+      &:hover {
+        color: #ffc107;
+      }
+    }
+
+    span {
+      font-family: "Kaushan Script", cursive;
+      font-size: 24px;
+      padding: 0 4px;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+    }
+  }
+}
