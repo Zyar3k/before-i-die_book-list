@@ -13,6 +13,8 @@ import {
   FILTER,
   CLEAR_FILTER,
   SORT_BOOKS,
+  GET_ONE_BOOK,
+  FETCH_ONE_ERROR,
 } from "../vars/vars";
 
 const initialState = {
@@ -22,6 +24,7 @@ const initialState = {
   searched: null,
   filtered: [],
   filters: [],
+  book: [],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -41,6 +44,17 @@ const StoreProvider = ({ children }) => {
       })
       .catch((err) => {
         dispatch({ type: FETCH_ERROR, payload: err.message });
+      });
+  };
+
+  const fetchOneBook = async (id) => {
+    axios
+      .get(`${BASE_URL}/${id}`)
+      .then((res) => {
+        dispatch({ type: GET_ONE_BOOK, payload: res.data });
+      })
+      .catch((err) => {
+        dispatch({ type: FETCH_ONE_ERROR, payload: err.message });
       });
   };
 
@@ -100,6 +114,7 @@ const StoreProvider = ({ children }) => {
         token,
         myStorage,
         isPageShowing,
+        book: state.book,
         setIsPageShowing,
         setIsAdmin,
         fetchData,
@@ -108,6 +123,7 @@ const StoreProvider = ({ children }) => {
         filter,
         clearFilter,
         sortBooks,
+        fetchOneBook,
       }}
     >
       {children}

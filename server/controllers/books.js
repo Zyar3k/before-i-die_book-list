@@ -17,7 +17,7 @@ const getBook = async (req, res) => {
   if (!book) {
     throw new NotFoundError(`Book with id ${bookId} not found`);
   }
-  res.status(StatusCodes.OK).json({ book });
+  res.status(StatusCodes.OK).json(book);
 };
 
 const createBook = async (req, res) => {

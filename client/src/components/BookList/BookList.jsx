@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { GlobalContext } from "../../context/GlobalProvider";
 import BookTile from "../BookTile/BookTile";
 
@@ -9,10 +10,10 @@ const BookList = () => {
   const [displayData, setDisplayData] = useState(books);
 
   useEffect(() => {
-    if (searched) {
-      setDisplayData(searched);
-    } else if (all === true) {
+    if (all === true) {
       setDisplayData(books);
+    } else if (searched) {
+      setDisplayData(searched);
     } else if (all !== true) {
       setDisplayData(filtered);
     }
@@ -21,7 +22,9 @@ const BookList = () => {
     <>
       <ul className="bookList">
         {displayData.map((book) => (
-          <BookTile key={book._id} book={book} />
+          <Link className="bookLink" to={`/${book._id}`} key={book._id}>
+            <BookTile book={book} />
+          </Link>
         ))}
       </ul>
     </>

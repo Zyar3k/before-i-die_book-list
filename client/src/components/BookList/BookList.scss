@@ -5,4 +5,15 @@
   justify-content: space-around;
   align-items: center;
   flex: 1;
+
+  .bookLink {
+    min-width: calc(100% / 2 - 50px);
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .bookLink {
+    width: 100%;
+  }
 }

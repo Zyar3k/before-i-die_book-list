@@ -8,6 +8,8 @@ import {
   FILTER,
   CLEAR_FILTER,
   SORT_BOOKS,
+  GET_ONE_BOOK,
+  FETCH_ONE_ERROR,
 } from "../vars/vars";
 
 export default function appReducer(state, action) {
@@ -21,9 +23,25 @@ export default function appReducer(state, action) {
         lists: { lista: [] },
         filtered: [],
         filters: [],
+        book: state.book,
       };
     case FETCH_ERROR:
       return { loading: false, books: [], error: "Something went wrong!" };
+
+    case GET_ONE_BOOK:
+      return {
+        loading: false,
+        book: action.payload,
+        error: "",
+        // all: false,
+        searched: false,
+        books: state.books,
+        lists: { lista: [] },
+        filtered: [],
+        filters: [],
+      };
+    case FETCH_ONE_ERROR:
+      return { loading: false, book: {}, error: "Something went wrong!" };
     case SET_NAMES:
       const data = action.payload;
       let listNames = [];
@@ -60,9 +78,10 @@ export default function appReducer(state, action) {
               .includes(action.payload.toLowerCase())
           );
         }),
+        all: false,
       };
     case CLEAR_SEARCH:
-      return { ...state, searched: null };
+      return { ...state, searched: null, all: true };
 
     case FILTER:
       let { value, checked } = action.payload;

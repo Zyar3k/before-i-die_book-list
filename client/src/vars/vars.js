@@ -13,6 +13,8 @@ const CLEAR_SEARCH = "CLEAR_SEARCH";
 const FILTER = "FILTER";
 const CLEAR_FILTER = "CLEAR_FILTER";
 const SORT_BOOKS = "SORT_BOOKS";
+const GET_ONE_BOOK = "GET_ONE_BOOK";
+const FETCH_ONE_ERROR = "FETCH_ONE_ERROR";
 
 export {
   FETCH_SUCCESS,
@@ -24,6 +26,8 @@ export {
   FILTER,
   CLEAR_FILTER,
   SORT_BOOKS,
+  GET_ONE_BOOK,
+  FETCH_ONE_ERROR,
 };
 
 export const inputLabels = [
