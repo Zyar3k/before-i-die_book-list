@@ -1,0 +1,159 @@
+.bookDetails {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  width: 100%;
+
+  &__info {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+
+    &--id {
+      position: absolute;
+      padding: 0 4px;
+      margin: 0;
+      right: 0;
+      top: 0;
+      color: rgba(255, 255, 255, 0.1);
+      font-size: 12px;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+    &--author {
+      font-size: 20px;
+      padding: 10px;
+      width: 50%;
+    }
+    &--listRank {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      padding: 10px;
+    }
+
+    &--title {
+      font-size: 40px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin: 20px 0;
+      padding: 10px 0;
+      text-align: center;
+      width: 100%;
+
+      &:after {
+        content: "";
+        display: block;
+        width: 60%;
+        height: 2px;
+        background: linear-gradient(
+          to left,
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0.7),
+          rgba(255, 255, 255, 0)
+        );
+        border-radius: 50%;
+        margin: 10px auto;
+      }
+    }
+  }
+  &__pages {
+    display: flex;
+    justify-content: space-around;
+
+    p {
+      display: flex;
+      align-items: center;
+      svg {
+        margin-right: 10px;
+        font-size: 40px;
+        opacity: 0.5;
+      }
+      &:hover {
+        svg {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &__lists {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.4);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 0;
+    p {
+      font-weight: bold;
+      color: rgba(255, 255, 255, 1);
+      padding: 6px;
+      margin: 4px 6px;
+      font-size: 20px;
+    }
+    position: relative;
+
+    &::before {
+      content: "LISTA";
+      position: absolute;
+      color: rgba(255, 255, 255, 0.1);
+      letter-spacing: 20px;
+      font-size: 90px;
+    }
+  }
+  &__adminInfo {
+    display: flex;
+  }
+  &__description {
+    // border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    padding-top: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    a {
+      margin: 0 auto;
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.4;
+
+      svg {
+        cursor: pointer;
+      }
+    }
+  }
+  &__ratings {
+    display: flex;
+    justify-content: space-around;
+    p {
+      display: flex;
+      align-items: center;
+      svg {
+        margin-left: 10px;
+      }
+    }
+  }
+  &__moreInfo {
+    display: flex;
+    color: rgba(255, 255, 255, 0.1);
+    // justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    p {
+      margin: 6px;
+    }
+  }
+}
