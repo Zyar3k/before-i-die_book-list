@@ -108,7 +108,7 @@ const BookActions = () => {
 
   useEffect(() => {
     if (!isAdmin) window.location.href = "/";
-  }, []);
+  }, [isAdmin]);
 
   return (
     <>

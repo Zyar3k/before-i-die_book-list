@@ -2,9 +2,6 @@ import { useContext } from "react";
 import { Box, Button } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
-import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
-import StarTwoToneIcon from "@mui/icons-material/StarTwoTone";
 
 import { sortArray } from "../../vars/vars";
 

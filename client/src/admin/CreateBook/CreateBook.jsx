@@ -1,6 +1,5 @@
 import { useState, forwardRef, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import request from "../../helpers/request";
 import {
   Stack,
   Box,
@@ -99,7 +98,7 @@ const CreateBook = () => {
 
   useEffect(() => {
     if (!isAdmin) window.location.href = "/";
-  }, []);
+  }, [isAdmin]);
 
   return (
     <>

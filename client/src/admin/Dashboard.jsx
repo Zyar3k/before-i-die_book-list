@@ -27,7 +27,7 @@ const Dashboard = () => {
   }, [books, searched, all, filtered]);
   useEffect(() => {
     if (!isAdmin) window.location.href = "/";
-  }, []);
+  }, [isAdmin]);
   return (
     <Stack spacing={2}>
       {books.length === 0 ? (

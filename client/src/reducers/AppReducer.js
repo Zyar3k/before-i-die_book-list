@@ -88,13 +88,11 @@ export default function appReducer(state, action) {
       let { value, checked } = action.payload;
       let filters = state.filters;
       const duplicateFilter = filters.includes(value);
-      let itemInFilters = filters.includes(value);
       const valueToPositive = value.slice(2);
       const valueToNegative = `un${value}`;
       if (!duplicateFilter) {
         if (checked) {
           filters.push(value);
-          itemInFilters = filters.includes(value);
           if (value.substring(0, 2) === "un") {
             const check = state.filters.includes(valueToPositive);
             if (check)
@@ -148,30 +146,25 @@ export default function appReducer(state, action) {
     case SORT_BOOKS:
       const sortBy = action.payload;
       let sortedList;
-      let sorted;
       state.all ? (sortedList = state.books) : (sortedList = state.filtered);
       const isUp = sortBy.slice(-2) === "Up";
       if (isUp) {
         const sortOpt = sortBy.slice(0, -2);
         if (sortOpt === "lastName") {
-          sorted = sortedList.sort((a, b) =>
+          sortedList.sort((a, b) =>
             a.author[sortOpt] > b.author[sortOpt] ? "1" : "-1"
           );
         } else {
-          sorted = sortedList.sort((a, b) =>
-            a[sortOpt] > b[sortOpt] ? "1" : "-1"
-          );
+          sortedList.sort((a, b) => (a[sortOpt] > b[sortOpt] ? "1" : "-1"));
         }
       } else {
         const sortOpt = sortBy.slice(0, -4);
         if (sortOpt === "lastName") {
-          sorted = sortedList.sort((a, b) =>
+          sortedList.sort((a, b) =>
             a.author[sortOpt] < b.author[sortOpt] ? "1" : "-1"
           );
         } else {
-          sorted = sortedList.sort((a, b) =>
-            a[sortOpt] < b[sortOpt] ? "1" : "-1"
-          );
+          sortedList.sort((a, b) => (a[sortOpt] < b[sortOpt] ? "1" : "-1"));
         }
       }
       return { ...state };
