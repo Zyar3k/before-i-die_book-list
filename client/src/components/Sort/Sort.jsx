@@ -10,24 +10,6 @@ import { sortArray } from "../../vars/vars";
 
 import { GlobalContext } from "../../context/GlobalProvider";
 
-// const sortArray = [
-//   {
-//     icon: <MenuBookTwoToneIcon />,
-//     sortBy: "page",
-//     name: "Ilość stron",
-//   },
-//   {
-//     icon: <PermIdentityTwoToneIcon />,
-//     sortBy: "lastName",
-//     name: "Nazwisko autora",
-//   },
-//   {
-//     icon: <StarTwoToneIcon />,
-//     sortBy: "rating",
-//     name: "Ranking",
-//   },
-// ];
-
 const Sort = () => {
   const { sortBooks } = useContext(GlobalContext);
   const handleChange = (e) => sortBooks(e);
@@ -40,8 +22,9 @@ const Sort = () => {
         justifyContent: "center",
       }}
     >
-      {sortArray.map((item) => (
+      {sortArray.map((item, index) => (
         <Box
+          key={index}
           sx={{
             display: "flex",
             alignItems: "center",

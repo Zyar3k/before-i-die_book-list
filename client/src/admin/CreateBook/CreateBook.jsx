@@ -24,7 +24,7 @@ const SnackbarAlert = forwardRef(function SnackbarAlert(props, ref) {
 const CreateBook = () => {
   const [open, setOpen] = useState(false);
   const [freeze, setFreeze] = useState(false);
-  const { token, fetchData, isAdmin } = useContext(GlobalContext);
+  const { isAdmin, createBook } = useContext(GlobalContext);
 
   const navigate = useNavigate();
 
@@ -66,12 +66,7 @@ const CreateBook = () => {
     };
 
     try {
-      await request.post("/admin/books/create", book, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      fetchData();
+      await createBook(book);
       setTimeout(() => {
         navigate("/admin/books");
       }, 2000);
@@ -115,8 +110,13 @@ const CreateBook = () => {
             <FormControl margin="dense">
               <FormLabel>Info</FormLabel>
               <FormGroup row>
-                {readAvaLabel.map((label) => (
-                  <Checkbox label={label} book={newBook} setBook={setNewBook} />
+                {readAvaLabel.map((label, index) => (
+                  <Checkbox
+                    key={index}
+                    label={label}
+                    book={newBook}
+                    setBook={setNewBook}
+                  />
                 ))}
               </FormGroup>
             </FormControl>

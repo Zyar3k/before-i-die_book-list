@@ -36,8 +36,12 @@ const Filter = () => {
             marginLeft: "8px",
           }}
         >
-          {readAvaLabel.map((label) => (
-            <RadioGroup handleOnChange={handleOnChange} label={label} />
+          {readAvaLabel.map((label, index) => (
+            <RadioGroup
+              key={index}
+              handleOnChange={handleOnChange}
+              label={label}
+            />
           ))}
           {filters.length > 0 && (
             <Tooltip title="Clear filters">

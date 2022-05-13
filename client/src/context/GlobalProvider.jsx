@@ -58,6 +58,19 @@ const StoreProvider = ({ children }) => {
       });
   };
 
+  const createBook = async (book) => {
+    try {
+      await axios.post(`${BASE_URL}/admin/books/create`, book, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      fetchData();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const setNames = (data) => {
     dispatch({ type: SET_NAMES, payload: data });
   };
@@ -124,6 +137,7 @@ const StoreProvider = ({ children }) => {
         clearFilter,
         sortBooks,
         fetchOneBook,
+        createBook,
       }}
     >
       {children}

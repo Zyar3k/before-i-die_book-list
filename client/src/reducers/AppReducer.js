@@ -42,6 +42,7 @@ export default function appReducer(state, action) {
       };
     case FETCH_ONE_ERROR:
       return { loading: false, book: {}, error: "Something went wrong!" };
+
     case SET_NAMES:
       const data = action.payload;
       let listNames = [];

@@ -80,11 +80,9 @@ const Dashboard = () => {
                     action={
                       isAdmin && (
                         <Tooltip title="Edit">
-                          <Link to={`/admin/books/${book._id}`}>
-                            <IconButton>
-                              <EditIcon />
-                            </IconButton>
-                          </Link>
+                          <IconButton>
+                            <EditIcon />
+                          </IconButton>
                         </Tooltip>
                       )
                     }

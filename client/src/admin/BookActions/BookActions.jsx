@@ -116,15 +116,25 @@ const BookActions = () => {
                 justifyContent: "space-between",
               }}
             >
-              {inputLabels.map((label) => (
-                <TextField label={label} book={book} setBook={setBook} />
+              {inputLabels.map((label, index) => (
+                <TextField
+                  label={label}
+                  book={book}
+                  setBook={setBook}
+                  key={index}
+                />
               ))}
             </Box>
             <FormControl margin="dense">
               <FormLabel>Info</FormLabel>
               <FormGroup row>
-                {readAvaLabel.map((label) => (
-                  <Checkbox label={label} setBook={setBook} book={book} />
+                {readAvaLabel.map((label, index) => (
+                  <Checkbox
+                    label={label}
+                    setBook={setBook}
+                    book={book}
+                    key={index}
+                  />
                 ))}
               </FormGroup>
             </FormControl>
@@ -138,8 +148,13 @@ const BookActions = () => {
               spacing={{ xs: 1, sm: 2, md: 4 }}
               m={2}
             >
-              {starsLabels.map((label) => (
-                <Stars label={label} book={book} setBook={setBook} />
+              {starsLabels.map((label, index) => (
+                <Stars
+                  label={label}
+                  book={book}
+                  setBook={setBook}
+                  key={index}
+                />
               ))}
             </Stack>
             <Divider />
