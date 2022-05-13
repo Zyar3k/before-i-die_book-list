@@ -28,8 +28,28 @@ const CreateBook = () => {
 
   const navigate = useNavigate();
 
-  const [newBook, setNewBook] = useState({});
+  const [book, setBook] = useState({
+    author: {
+      name: "",
+      lastName: "",
+    },
+    _id: "",
+    title: "",
 
+    list: [],
+    page: 0,
+    link: "",
+    readed: false,
+    available: false,
+    desc: "",
+    createdBy: "",
+    adminRating: 0,
+    rating: 0,
+    createdAt: "",
+    updatedAt: "",
+    __v: 0,
+  });
+  console.log(book);
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -50,9 +70,9 @@ const CreateBook = () => {
       available,
       adminRating,
       rating,
-    } = newBook;
+    } = book;
     const prepareList = list.split(",");
-    const book = {
+    const createdBook = {
       title,
       author: { name, lastName },
       page,
@@ -66,7 +86,7 @@ const CreateBook = () => {
     };
 
     try {
-      await createBook(book);
+      await createBook(createdBook);
       setTimeout(() => {
         navigate("/admin/books");
       }, 2000);
@@ -101,8 +121,8 @@ const CreateBook = () => {
                 <TextField
                   key={index}
                   label={label}
-                  book={newBook}
-                  setBook={setNewBook}
+                  book={book}
+                  setBook={setBook}
                 />
               ))}
             </Box>
@@ -114,8 +134,8 @@ const CreateBook = () => {
                   <Checkbox
                     key={index}
                     label={label}
-                    book={newBook}
-                    setBook={setNewBook}
+                    book={book}
+                    setBook={setBook}
                   />
                 ))}
               </FormGroup>
@@ -134,8 +154,8 @@ const CreateBook = () => {
                 <Stars
                   key={index}
                   label={label}
-                  book={newBook}
-                  setBook={setNewBook}
+                  book={book}
+                  setBook={setBook}
                 />
               ))}
             </Stack>

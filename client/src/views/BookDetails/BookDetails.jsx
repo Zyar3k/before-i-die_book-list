@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { LoadingProgress } from "../../common";
 
 import { GlobalContext } from "../../context/GlobalProvider";
@@ -7,15 +7,13 @@ import { GlobalContext } from "../../context/GlobalProvider";
 const BookDetails = () => {
   const { book, fetchOneBook } = useContext(GlobalContext);
   const isEmpty = Object.keys(book).length === 0;
-
-  const location = useLocation();
-  const path = location.pathname.slice(1);
+  const { id } = useParams();
 
   const getOneBook = (id) => fetchOneBook(id);
 
   useEffect(() => {
-    getOneBook(path);
-  }, [path]);
+    getOneBook(id);
+  }, [id]);
   return (
     <div>
       {isEmpty ? (

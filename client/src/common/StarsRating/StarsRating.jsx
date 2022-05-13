@@ -11,6 +11,8 @@ const StarsRating = ({ book, setBook, label }) => {
     setByLabel = "rating";
   }
 
+  const value = book ? book[setByLabel] : 0;
+
   return (
     <Box
       sx={{
@@ -21,7 +23,7 @@ const StarsRating = ({ book, setBook, label }) => {
       <FormLabel>{label}: </FormLabel>
       <Rating
         name="simple-controlled"
-        value={book ? book[setByLabel] : 0}
+        value={value}
         onChange={(e, newValue) =>
           setBook({ ...book, [setByLabel]: parseInt(newValue) })
         }

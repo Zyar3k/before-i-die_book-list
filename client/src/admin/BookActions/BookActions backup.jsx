@@ -14,7 +14,7 @@ import {
   Snackbar,
 } from "@mui/material";
 import { GlobalContext } from "../../context/GlobalProvider";
-import { DialogComponent } from "../../common/";
+import { DialogComponent } from "../../common";
 import { Button, Checkbox, TextField, Stars } from "../../common";
 
 const SnackbarAlert = forwardRef(function SnackbarAlert(props, ref) {
@@ -22,24 +22,29 @@ const SnackbarAlert = forwardRef(function SnackbarAlert(props, ref) {
 });
 
 const BookActions = () => {
-  const { token, books, fetchData, isAdmin } = useContext(GlobalContext);
+  const { books, isAdmin, deleteBook, editBook } = useContext(GlobalContext);
   const [book, setBook] = useState({
-    author: {
-      name: "",
-      lastName: "",
-    },
-    title: "",
-    list: [],
-    page: 0,
-    link: "",
-    readed: false,
-    available: false,
-    desc: "",
-    adminRating: 0,
-    rating: 0,
+    // title: "",
+    // author: {
+    //   name: "",
+    //   lastName: "",
+    // },
+    // page: 0,
+    // list: [],
+    // desc: "",
+    // link: "",
+    // readed: false,
+    // available: false,
+    // adminRating: 0,
+    // rating: 0,
+    // createdAt: "",
+    // updatedAt: "",
+    // createdBy: "",
+    // _id: "",
   });
   const [deleteAccept, setDeleteAccept] = useState(false);
   const [open, setOpen] = useState(false);
+
   const [freeze, setFreeze] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -52,13 +57,8 @@ const BookActions = () => {
   };
 
   const handleDelete = async () => {
-    await request.delete(`/admin/books/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    deleteBook(id);
     setDeleteAccept(false);
-    fetchData();
     navigate("/admin/books");
   };
 
@@ -82,19 +82,12 @@ const BookActions = () => {
     };
 
     try {
-      const response = await request.patch(`/admin/books/${id}`, editedBook, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      fetchData();
-      if (response.status === 200) {
-        setOpen(true);
-        setFreeze(true);
-        setTimeout(() => {
-          navigate("/admin/books");
-        }, 2000);
-      }
+      editBook(id, editedBook);
+      setOpen(true);
+      setFreeze(true);
+      setTimeout(() => {
+        navigate("/admin/books");
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -102,9 +95,9 @@ const BookActions = () => {
 
   useEffect(() => {
     const selectedBook = books.find((book) => book._id === id);
-
+    // fetchOneBook(id);
     setBook(selectedBook);
-  }, [books, id]);
+  }, [id]);
 
   useEffect(() => {
     if (!isAdmin) window.location.href = "/";
@@ -112,7 +105,7 @@ const BookActions = () => {
 
   return (
     <>
-      {isAdmin && (
+      {isAdmin ? (
         <Stack mt={2} style={{ display: "flex", alignItems: "center" }}>
           <Typography variant="h6" mb={2}>
             Edit book
@@ -139,7 +132,7 @@ const BookActions = () => {
                 />
               ))}
             </Box>
-            <FormControl margin="dense">
+            {/* <FormControl margin="dense">
               <FormLabel>Info</FormLabel>
               <FormGroup row>
                 {readAvaLabel.map((label, index) => (
@@ -151,9 +144,9 @@ const BookActions = () => {
                   />
                 ))}
               </FormGroup>
-            </FormControl>
+            </FormControl> */}
             <Divider />
-            <Stack
+            {/* <Stack
               sx={{
                 display: "flex",
                 justifyContent: "center",
@@ -170,7 +163,7 @@ const BookActions = () => {
                   key={index}
                 />
               ))}
-            </Stack>
+            </Stack> */}
             <Divider />
             <Stack
               direction={{ xs: "column", sm: "row" }}
@@ -194,6 +187,8 @@ const BookActions = () => {
             </SnackbarAlert>
           </Snackbar>
         </Stack>
+      ) : (
+        "Upss"
       )}
     </>
   );
