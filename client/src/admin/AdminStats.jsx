@@ -7,7 +7,6 @@ import { GlobalContext } from "../context/GlobalProvider";
 
 const AdminStats = () => {
   const { lists } = useContext(GlobalContext);
-
   return (
     <Stack m={2} justifyContent="center">
       <Typography variant="h4" textAlign="center">

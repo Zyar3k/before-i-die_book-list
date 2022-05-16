@@ -1,11 +1,10 @@
-// a {
-// min-width: calc(100% / 2 - 50px);
 .bookTile {
   box-shadow: 1px 1px 4px rgba(26, 26, 26, 0.5);
   box-shadow: 1px 1px 6px rgba(255, 255, 255, 0.3);
   margin: 10px;
   padding: 4px;
   min-height: 80px;
+  max-width: 478px;
   background: #000428;
   background: -webkit-linear-gradient(to bottom right, #004e9283, #000428);
   background: linear-gradient(
@@ -23,6 +22,12 @@
   text-align: center;
   color: rgba(255, 255, 255, 0.7);
 
+  transition: all 0.2s ease-in-out;
+
+  &.best {
+    background-color: gold;
+  }
+
   &__title {
     margin: 0;
     margin-top: 10px;
@@ -31,6 +36,7 @@
 
   &:hover {
     color: rgba(255, 255, 255, 1);
+    box-shadow: 1px 1px 6px rgba(255, 255, 255, 0.8);
     cursor: pointer;
   }
 
@@ -38,4 +44,3 @@
     margin-left: 8px;
   }
 }
-// }
