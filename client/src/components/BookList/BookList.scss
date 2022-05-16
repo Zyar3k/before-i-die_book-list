@@ -13,7 +13,10 @@
 }
 
 @media (max-width: 800px) {
-  .bookLink {
-    width: 100%;
+  .bookList {
+    .bookLink {
+      width: 100%;
+    }
+    margin-bottom: 40px;
   }
 }

@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { LoadingProgress } from "../../common";
 import { Tooltip } from "@mui/material";
 
@@ -7,11 +7,12 @@ import TimerIcon from "@mui/icons-material/Timer";
 import StarIcon from "@mui/icons-material/Star";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
+import MobileFriendlyIcon from "@mui/icons-material/MobileFriendly";
+import AppShortcutIcon from "@mui/icons-material/AppShortcut";
 import Zoom from "@mui/material/Zoom";
 
 import { GlobalContext } from "../../context/GlobalProvider";
-
-import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
 
 import logoLC from "../../assets/lc.png";
 
@@ -22,6 +23,7 @@ const BookDetails = () => {
   const [isDescExtend, setIsDescExtend] = useState(false);
   const isEmpty = Object.keys(book).length === 0;
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const getOneBook = (id) => fetchOneBook(id);
 
@@ -47,10 +49,12 @@ const BookDetails = () => {
     return text.substring(0, 100) + "...";
   };
 
-  // console.log(book.list);
   useEffect(() => {
     getOneBook(id);
   }, [id]);
+
+  // console.log(first100letters(book.desc));
+
   return (
     <div>
       {isEmpty ? (
@@ -104,9 +108,15 @@ const BookDetails = () => {
                 <img src={logoLC} alt="" />
               </a>
             </Tooltip>
-            <p>{isDescExtend ? book.desc : first100letters(book.desc)}</p>
             <p>
-              {isDescExtend ? (
+              {isDescExtend
+                ? book.desc
+                : book.desc === ""
+                ? "Opis pojawi się wkrótce..."
+                : first100letters(book.desc)}
+            </p>
+            <p>
+              {book.desc === "" ? null : isDescExtend ? (
                 <KeyboardArrowUpIcon
                   onClick={() => setIsDescExtend(!isDescExtend)}
                 />
@@ -116,21 +126,38 @@ const BookDetails = () => {
                 />
               )}
             </p>
-            {/* <p>Opis: {book.desc}</p> */}
           </div>
           <div className="bookDetails__ratings">
-            <p>adminRating: {multiplyStars(book.adminRating)}</p>
-            <p>rating: {multiplyStars(book.rating)}</p>
+            <p>
+              Ocena:
+              <span>
+                {multiplyStars(book.rating).length === 0
+                  ? "B/D"
+                  : multiplyStars(book.rating)}
+              </span>
+            </p>
+            <p>
+              Ocena RQ:{" "}
+              <span>
+                {multiplyStars(book.adminRating).length === 0
+                  ? "B/D"
+                  : multiplyStars(book.adminRating)}
+              </span>
+            </p>
           </div>
+
           <div className="bookDetails__adminInfo">
-            <p>readed: {book.readed ? "true" : "false"}</p>
-            <p>available: {book.available ? "true" : "false"}</p>
+            <p>{book.readed ? <MobileFriendlyIcon /> : ""}</p>
+            <p>{book.available ? <AppShortcutIcon /> : ""}</p>
           </div>
+
           <div className="bookDetails__moreInfo">
             <p>Utworzono: {time(book.createdAt)}</p>
             <p>Ostatnia modyfikacja: {time(book.updatedAt)}</p>
-            <p>createdBy: {book.createdBy}</p>
-            <h1></h1>
+            {/* <p>createdBy: {book.createdBy}</p> */}
+          </div>
+          <div className="bookDetails__actions">
+            <button onClick={() => navigate(-1)}>Wróć</button>
           </div>
         </section>
       )}

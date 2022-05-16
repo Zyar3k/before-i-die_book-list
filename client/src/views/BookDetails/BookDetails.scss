@@ -109,19 +109,17 @@
       font-size: 90px;
     }
   }
-  &__adminInfo {
-    display: flex;
-  }
   &__description {
-    // border: 1px solid white;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
     padding-top: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
     a {
       margin: 0 auto;
+      margin-bottom: 20px;
     }
     p {
       font-size: 18px;
@@ -134,19 +132,36 @@
   }
   &__ratings {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
     p {
       display: flex;
       align-items: center;
-      svg {
-        margin-left: 10px;
+      justify-content: center;
+      text-align: center;
+      width: 45%;
+
+      span {
+        margin-left: 6px;
+        svg {
+          margin-left: 10px;
+        }
       }
+    }
+  }
+  &__adminInfo {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    opacity: 0.2;
+    p {
+      margin: 0;
+      padding: 0;
     }
   }
   &__moreInfo {
     display: flex;
     color: rgba(255, 255, 255, 0.1);
-    // justify-content: space-around;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -154,6 +169,34 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     p {
       margin: 6px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: end;
+
+    button {
+      box-shadow: 1px 1px 6px rgba(255, 255, 255, 0.3);
+      margin: 10px;
+      padding: 10px 20px;
+      background: #000428;
+      background: -webkit-linear-gradient(to bottom right, #004e9283, #000428);
+      background: linear-gradient(
+        to bottom right,
+        rgba(0, 78, 146, 0.5),
+        rgba(0, 4, 40, 0.5)
+      );
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      border-radius: 8px;
+      border: none;
+      color: rgba(255, 255, 255, 0.7);
+
+      &:hover {
+        color: rgba(255, 255, 255, 1);
+        cursor: pointer;
+      }
     }
   }
 }
