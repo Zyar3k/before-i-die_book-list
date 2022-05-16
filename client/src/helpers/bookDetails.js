@@ -30,3 +30,14 @@ export const readingTimeCounter = (data) => {
 export const first100letters = (text) => {
   return text.substring(0, 100) + "...";
 };
+
+export const checkLastModification = (data) => {
+  let lastUpdated;
+  const spread = [...data];
+  const sortArray = spread.sort((a, b) => {
+    return new Date(a.updatedAt) - new Date(b.updatedAt);
+  });
+  const latestItem = sortArray.pop();
+  lastUpdated = new Date(latestItem.updatedAt).toLocaleString();
+  return lastUpdated;
+};

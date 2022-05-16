@@ -9,6 +9,7 @@ import {
   CardHeader,
 } from "@mui/material";
 import { EditIcon, CheckCircleOutlineIcon } from "../helpers/iconsImport";
+import { RenderIf } from "../helpers/RenderIf";
 import { Filter, Search, Sort } from "../components/index";
 import { LoadingProgress, ScrollToTop } from "../common/index";
 
@@ -88,7 +89,7 @@ const Dashboard = () => {
                       )
                     }
                   />
-                  {book.readed ? (
+                  <RenderIf condition={book.readed}>
                     <CheckCircleOutlineIcon
                       color="success"
                       fontSize="small"
@@ -97,7 +98,7 @@ const Dashboard = () => {
                         padding: "2px",
                       }}
                     />
-                  ) : null}
+                  </RenderIf>
                 </Card>
               </Link>
             ))}

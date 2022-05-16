@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { percents, availableBooks, readedBooks } from "../../helpers/stats";
+import { checkLastModification } from "../../helpers/bookDetails";
 import { CustomProgress } from "../../common/";
 
 import { GlobalContext } from "../../context/GlobalProvider";
@@ -7,9 +8,18 @@ import { GlobalContext } from "../../context/GlobalProvider";
 import "./Statistic.scss";
 
 const Statistic = () => {
-  const { lists } = useContext(GlobalContext);
+  const { lists, books } = useContext(GlobalContext);
+  const [lastUpdate, setLastUpdate] = useState("");
+
+  useEffect(() => {
+    if (books.length !== 0) {
+      setLastUpdate(checkLastModification(books));
+    }
+  }, [books]);
+
   return (
     <div className="statistic">
+      <p className="lastUpdated">Ostatnia moodyfikacja listy: {lastUpdate}</p>
       <h1>Statystyki</h1>
       {Object.keys(lists).map((key) => (
         <div

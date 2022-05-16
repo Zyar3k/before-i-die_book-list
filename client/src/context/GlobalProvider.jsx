@@ -137,6 +137,7 @@ const StoreProvider = ({ children }) => {
   useEffect(() => {
     adminLogin();
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <GlobalContext.Provider

@@ -19,7 +19,8 @@ const SearchUser = ({ setOptionOpen }) => {
     } else {
       clearSearch();
     }
-  }, [searchValue, clearSearch, searchBook]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue]);
 
   return (
     <section className="optionSection searchSection">

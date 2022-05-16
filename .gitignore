@@ -2,3 +2,4 @@
 .env
 /server/dbtest.json
 /server/finalDB.json
+/server/changer.js

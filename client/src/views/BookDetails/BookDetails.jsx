@@ -21,6 +21,7 @@ import logoLC from "../../assets/lc.png";
 import { GlobalContext } from "../../context/GlobalProvider";
 
 import "./BookDetails.scss";
+import { RenderIf } from "../../helpers/RenderIf";
 
 const BookDetails = () => {
   const { book, fetchOneBook } = useContext(GlobalContext);
@@ -97,11 +98,13 @@ const BookDetails = () => {
                 : first100letters(book.desc)}
             </p>
             <p>
-              {book.desc === "" ? null : isDescExtend ? (
-                <KeyArrUpp onClick={() => setIsDescExtend(!isDescExtend)} />
-              ) : (
-                <KeyArrDwn onClick={() => setIsDescExtend(!isDescExtend)} />
-              )}
+              <RenderIf condition={book.desc !== ""}>
+                {isDescExtend ? (
+                  <KeyArrUpp onClick={() => setIsDescExtend(!isDescExtend)} />
+                ) : (
+                  <KeyArrDwn onClick={() => setIsDescExtend(!isDescExtend)} />
+                )}
+              </RenderIf>
             </p>
           </div>
           <div className="bookDetails__ratings">
@@ -124,8 +127,16 @@ const BookDetails = () => {
           </div>
 
           <div className="bookDetails__adminInfo">
-            <p>{book.readed ? <MobileIcon /> : ""}</p>
-            <p>{book.available ? <ShortcutIcon /> : ""}</p>
+            <p>
+              <RenderIf condition={book.readed}>
+                <MobileIcon />
+              </RenderIf>
+            </p>
+            <p>
+              <RenderIf condition={book.available}>
+                <ShortcutIcon />
+              </RenderIf>
+            </p>
           </div>
 
           <div className="bookDetails__moreInfo">

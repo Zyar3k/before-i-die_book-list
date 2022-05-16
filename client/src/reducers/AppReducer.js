@@ -33,10 +33,9 @@ export default function appReducer(state, action) {
         loading: false,
         book: action.payload,
         error: "",
-        // all: false,
         searched: false,
         books: state.books,
-        lists: { lista: [] },
+        lists: state.lists,
         filtered: [],
         filters: [],
       };
