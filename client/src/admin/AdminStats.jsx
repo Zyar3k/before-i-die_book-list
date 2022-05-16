@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Box, Card, CardHeader, Stack, Typography } from "@mui/material";
-import { percents, availableBooks, readedBooks } from "../helpers/stats";
 import { CustomProgress } from "../common/index";
+import { percents, availableBooks, readedBooks } from "../helpers/stats";
 
 import { GlobalContext } from "../context/GlobalProvider";
 

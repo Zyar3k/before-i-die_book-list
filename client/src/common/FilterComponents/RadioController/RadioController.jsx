@@ -1,5 +1,5 @@
-import { FormControlLabel, Radio } from "@mui/material";
 import { useContext } from "react";
+import { FormControlLabel, Radio } from "@mui/material";
 
 import { GlobalContext } from "../../../context/GlobalProvider";
 

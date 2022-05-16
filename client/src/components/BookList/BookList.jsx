@@ -1,8 +1,9 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ScrollToTop from "../../common/ScrollToTop/ScrollToTop";
-import { GlobalContext } from "../../context/GlobalProvider";
+import { ScrollToTop } from "../../common/";
 import BookTile from "../BookTile/BookTile";
+
+import { GlobalContext } from "../../context/GlobalProvider";
 
 import "./BookList.scss";
 

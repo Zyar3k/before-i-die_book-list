@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LoadingProgress } from "../../common/index";
+import { LoadingProgress } from "../../common/";
 import { BookList, Sidebar } from "../../components/";
 
 import { GlobalContext } from "../../context/GlobalProvider";
@@ -15,7 +15,6 @@ const Home = () => {
         <div style={{ display: "flex" }}>
           <Sidebar />
           <BookList />
-          {/* <Footer /> */}
         </div>
       )}
     </div>

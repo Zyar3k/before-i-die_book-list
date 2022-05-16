@@ -1,11 +1,11 @@
 import { useState, useContext, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { Container } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import "./Header.scss";
+import { CloseIcon, MenuIcon } from "../../helpers/iconsImport";
 
 import { GlobalContext } from "../../context/GlobalProvider";
+
+import "./Header.scss";
 
 const Header = () => {
   const { isAdmin, setIsAdmin, myStorage } = useContext(GlobalContext);

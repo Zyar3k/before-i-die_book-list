@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { Container } from "@mui/material";
 import { BookDetails, Home, Statistic } from "../views/index";
 import {
   AdminStats,
@@ -7,8 +9,6 @@ import {
   Login,
   Dashboard,
 } from "../admin/index";
-import { Container } from "@mui/material";
-import { useEffect } from "react";
 
 const Pages = () => {
   const location = useLocation();

@@ -1,16 +1,10 @@
 import { useState } from "react";
-import {
-  SearchUser,
-  FilterUser,
-  SortUser,
-} from "../../common/user/user_option";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-
 import IconButton from "@mui/material/IconButton";
+import { SearchUser, FilterUser, SortUser } from "../../common/user_option";
+import { SidebarInfo } from "../../common/";
+import { ExpandLessIcon, ExpandMoreIcon } from "../../helpers/iconsImport";
 
 import "./Sidebar.scss";
-import SidebarInfo from "../../common/user/SidebarInfo/SidebarInfo";
 
 const Sidebar = () => {
   const [more, setMore] = useState(false);

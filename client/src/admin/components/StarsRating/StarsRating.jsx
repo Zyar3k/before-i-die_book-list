@@ -1,6 +1,5 @@
 import { Rating, FormLabel, Box } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { StarBorderIcon, StarIcon } from "../../../helpers/iconsImport";
 
 const StarsRating = ({ book, setBook, label }) => {
   const check = label.length > 4;

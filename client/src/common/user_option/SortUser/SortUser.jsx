@@ -1,12 +1,8 @@
 import { useContext } from "react";
+import { CloseIcon, KeyArrUpp, KeyArrDwn } from "../../../helpers/iconsImport";
+import { sortArray } from "../../../vars/vars";
 
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import CloseIcon from "@mui/icons-material/Close";
-
-import { sortArray } from "../../../../vars/vars";
-
-import { GlobalContext } from "../../../../context/GlobalProvider";
+import { GlobalContext } from "../../../context/GlobalProvider";
 
 import "../user_option.scss";
 
@@ -32,11 +28,11 @@ const SortUser = ({ setOptionOpen }) => {
         {sortArray.map((item, index) => (
           <li className="ulOptions__option" key={index}>
             <button onClick={() => handleChange(`${item.sortBy}Up`)}>
-              <KeyboardArrowUpIcon />
+              <KeyArrUpp />
             </button>
             <p>{item.name}</p>
             <button onClick={() => handleChange(`${item.sortBy}Down`)}>
-              <KeyboardArrowDownIcon />
+              <KeyArrDwn />
             </button>
           </li>
         ))}

@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import "./BookTile.scss";
 
 import { GlobalContext } from "../../context/GlobalProvider";
+
+import "./BookTile.scss";
 
 const BookTile = ({ book }) => {
   const { isPageShowing, lists } = useContext(GlobalContext);

@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { percents, availableBooks, readedBooks } from "../../helpers/stats";
-import { CustomProgress } from "../../common/index";
+import { CustomProgress } from "../../common/";
 
 import { GlobalContext } from "../../context/GlobalProvider";
+
 import "./Statistic.scss";
 
 const Statistic = () => {
   const { lists } = useContext(GlobalContext);
-  console.log(lists);
   return (
     <div className="statistic">
       <h1>Statystyki</h1>

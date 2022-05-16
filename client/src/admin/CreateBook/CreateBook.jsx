@@ -11,10 +11,10 @@ import {
   Alert,
   Snackbar,
 } from "@mui/material";
+import { ActionButton, Checkbox, TextField, Stars } from "..";
 import { inputLabels, readAvaLabel, starsLabels } from "../../vars/vars";
 
 import { GlobalContext } from "../../context/GlobalProvider";
-import { Button, Checkbox, TextField, Stars } from "../../common";
 
 const SnackbarAlert = forwardRef(function SnackbarAlert(props, ref) {
   return <Alert elevation={6} ref={ref} {...props} />;
@@ -48,7 +48,7 @@ const CreateBook = () => {
     updatedAt: "",
     __v: 0,
   });
-  console.log(book);
+
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -165,8 +165,8 @@ const CreateBook = () => {
             m={2}
             sx={{ display: "flex", justifyContent: "center" }}
           >
-            <Button freeze={freeze} text="Add" />
-            <Button freeze={freeze} text="Back" onClick={oneBack} />
+            <ActionButton freeze={freeze} text="Add" />
+            <ActionButton freeze={freeze} text="Back" onClick={oneBack} />
           </Stack>
         </Box>
 

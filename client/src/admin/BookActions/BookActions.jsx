@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState, forwardRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import request from "../../helpers/request";
 import { inputLabels, readAvaLabel, starsLabels } from "../../vars/vars";
 import {
   Box,
@@ -13,9 +12,10 @@ import {
   Divider,
   Snackbar,
 } from "@mui/material";
+import { TextField, Checkbox, DialogComponent, ActionButton, Stars } from "..";
+import request from "../../helpers/request";
+
 import { GlobalContext } from "../../context/GlobalProvider";
-import { DialogComponent } from "../../common/";
-import { Button, Checkbox, TextField, Stars } from "../../common";
 
 const SnackbarAlert = forwardRef(function SnackbarAlert(props, ref) {
   return <Alert elevation={6} ref={ref} {...props} />;
@@ -177,9 +177,9 @@ const BookActions = () => {
               m={2}
               sx={{ display: "flex", justifyContent: "center" }}
             >
-              <Button freeze={freeze} text="Save" />
-              <Button freeze={freeze} text="Back" onClick={oneBack} />
-              <Button text="Delete" freeze={freeze} onClick={del} />
+              <ActionButton freeze={freeze} text="Save" />
+              <ActionButton freeze={freeze} text="Back" onClick={oneBack} />
+              <ActionButton text="Delete" freeze={freeze} onClick={del} />
               <DialogComponent
                 deleteAccept={deleteAccept}
                 cancelDel={cancelDel}

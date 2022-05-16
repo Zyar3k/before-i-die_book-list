@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Box,
   FormControl,
@@ -5,8 +6,7 @@ import {
   Tooltip,
   IconButton,
 } from "@mui/material";
-import { useContext } from "react";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { HighlightOffIcon } from "../../helpers/iconsImport";
 import { RadioGroup } from "../../common";
 import { readAvaLabel } from "../../vars/vars";
 

@@ -1,8 +1,7 @@
 import { useContext, useEffect, useState } from "react";
+import { CloseIcon } from "../../../helpers/iconsImport";
 
-import { GlobalContext } from "../../../../context/GlobalProvider";
-
-import CloseIcon from "@mui/icons-material/Close";
+import { GlobalContext } from "../../../context/GlobalProvider";
 
 import "../user_option.scss";
 
@@ -20,7 +19,7 @@ const SearchUser = ({ setOptionOpen }) => {
     } else {
       clearSearch();
     }
-  }, [searchValue]);
+  }, [searchValue, clearSearch, searchBook]);
 
   return (
     <section className="optionSection searchSection">

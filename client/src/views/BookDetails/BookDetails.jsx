@@ -1,20 +1,24 @@
 import { useEffect, useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { LoadingProgress } from "../../common";
-import { Tooltip } from "@mui/material";
-
-import TimerIcon from "@mui/icons-material/Timer";
-import StarIcon from "@mui/icons-material/Star";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
-import MobileFriendlyIcon from "@mui/icons-material/MobileFriendly";
-import AppShortcutIcon from "@mui/icons-material/AppShortcut";
-import Zoom from "@mui/material/Zoom";
+import { Tooltip, Zoom } from "@mui/material";
+import {
+  KeyArrUpp,
+  KeyArrDwn,
+  BookIcon,
+  ShortcutIcon,
+  MobileIcon,
+  TimerIcon,
+} from "../../helpers/iconsImport";
+import {
+  first100letters,
+  multiplyStars,
+  readingTimeCounter,
+  time,
+} from "../../helpers/bookDetails";
+import logoLC from "../../assets/lc.png";
 
 import { GlobalContext } from "../../context/GlobalProvider";
-
-import logoLC from "../../assets/lc.png";
 
 import "./BookDetails.scss";
 
@@ -27,40 +31,10 @@ const BookDetails = () => {
 
   const getOneBook = (id) => fetchOneBook(id);
 
-  const multiplyStars = (stars) => {
-    let result = [];
-    for (let i = 0; i < stars; i++) {
-      result.push(<StarIcon key={i} />);
-    }
-    return result;
-  };
-
-  const time = (date) => {
-    return new Date(date).toLocaleDateString("pl", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    });
-  };
-
-  const readingTimeCounter = (data) => {
-    const fullHours = data / 60;
-    const remainingMinutes = data % 60;
-    const readingTime =
-      Math.floor(fullHours) + " godzin " + remainingMinutes + " minut";
-
-    return readingTime;
-  };
-
-  const first100letters = (text) => {
-    return text.substring(0, 100) + "...";
-  };
-
   readingTimeCounter(book.page);
   useEffect(() => {
     getOneBook(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
@@ -82,7 +56,7 @@ const BookDetails = () => {
           <div className="bookDetails__pages">
             <Tooltip title="Liczba stron" arrow TransitionComponent={Zoom}>
               <p className="bookDetails__pages--page">
-                <MenuBookTwoToneIcon /> {book.page} str.
+                <BookIcon /> {book.page} str.
               </p>
             </Tooltip>
             <Tooltip
@@ -124,13 +98,9 @@ const BookDetails = () => {
             </p>
             <p>
               {book.desc === "" ? null : isDescExtend ? (
-                <KeyboardArrowUpIcon
-                  onClick={() => setIsDescExtend(!isDescExtend)}
-                />
+                <KeyArrUpp onClick={() => setIsDescExtend(!isDescExtend)} />
               ) : (
-                <KeyboardArrowDownIcon
-                  onClick={() => setIsDescExtend(!isDescExtend)}
-                />
+                <KeyArrDwn onClick={() => setIsDescExtend(!isDescExtend)} />
               )}
             </p>
           </div>
@@ -154,8 +124,8 @@ const BookDetails = () => {
           </div>
 
           <div className="bookDetails__adminInfo">
-            <p>{book.readed ? <MobileFriendlyIcon /> : ""}</p>
-            <p>{book.available ? <AppShortcutIcon /> : ""}</p>
+            <p>{book.readed ? <MobileIcon /> : ""}</p>
+            <p>{book.available ? <ShortcutIcon /> : ""}</p>
           </div>
 
           <div className="bookDetails__moreInfo">

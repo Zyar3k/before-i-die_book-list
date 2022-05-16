@@ -33,17 +33,13 @@
   }
 
   &.user {
-    background: #000428; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to left,
-      #004e92,
-      #000428
-    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: #000428;
+    background: -webkit-linear-gradient(to left, #004e92, #000428);
     background: linear-gradient(
       to left,
       rgba(0, 78, 146, 0.5),
       rgba(0, 4, 40, 0.5)
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    );
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
     box-shadow: 0 1px 4px rgba(255, 255, 255, 0.2);
@@ -55,7 +51,7 @@
   .links {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
 
     a {
       color: white;
@@ -96,7 +92,7 @@
       position: absolute;
       display: flex;
       flex-direction: column;
-      justify-content: end;
+      justify-content: flex-end;
       align-items: flex-end;
       background-color: #42a5f5;
       left: -100%;

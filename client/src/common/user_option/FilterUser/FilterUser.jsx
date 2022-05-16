@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import { readAvaLabel } from "../../../../vars/vars";
-import CloseIcon from "@mui/icons-material/Close";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-
-import { GlobalContext } from "../../../../context/GlobalProvider";
 import FilterOption from "./subcomponents/FilterOption";
+import { readAvaLabel } from "../../../vars/vars";
+import { CloseIcon, HighlightOffIcon } from "../../../helpers/iconsImport";
+
+import { GlobalContext } from "../../../context/GlobalProvider";
 
 import "../user_option.scss";
 

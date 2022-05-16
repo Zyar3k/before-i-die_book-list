@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
-
 import { useLocation } from "react-router-dom";
-import {
-  SearchUser,
-  SortUser,
-  FilterUser,
-} from "../../common/user/user_option";
+import { SearchUser, SortUser, FilterUser } from "../../common/user_option";
 
 import "./Footer.scss";
 

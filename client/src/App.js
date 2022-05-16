@@ -1,6 +1,6 @@
 import Pages from "./components/Pages.jsx";
 import Header from "./components/Header/Header";
-import { Footer } from "./components/index.js";
+import { Footer } from "./components/";
 
 function App() {
   return (

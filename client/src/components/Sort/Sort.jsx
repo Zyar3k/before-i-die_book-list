@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { Box, Button } from "@mui/material";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-
+import { KeyArrDwn, KeyArrUpp } from "../../helpers/iconsImport";
 import { sortArray } from "../../vars/vars";
 
 import { GlobalContext } from "../../context/GlobalProvider";
@@ -29,11 +27,11 @@ const Sort = () => {
           }}
         >
           <Button onClick={() => handleChange(`${item.sortBy}Up`)}>
-            <KeyboardArrowUpIcon />
+            <KeyArrUpp />
           </Button>
           {item.icon}
           <Button onClick={() => handleChange(`${item.sortBy}Down`)}>
-            <KeyboardArrowDownIcon />
+            <KeyArrDwn />
           </Button>
         </Box>
       ))}

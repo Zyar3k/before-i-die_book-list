@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { GlobalContext } from "../../../../../context/GlobalProvider";
+
+import { GlobalContext } from "../../../../context/GlobalProvider";
 
 const FilterInput = ({ handleOnChange, label, value }) => {
   const { filters } = useContext(GlobalContext);

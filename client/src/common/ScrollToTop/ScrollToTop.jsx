@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { KeyArrUpp } from "../../helpers/iconsImport";
+
 import "./ScrollToTop.scss";
 
 const ScrollToTop = () => {
@@ -22,10 +23,7 @@ const ScrollToTop = () => {
   return (
     <div className="top-to-btm">
       {showTopBtn && (
-        <KeyboardArrowUpIcon
-          className="icon-position icon-style"
-          onClick={goToTop}
-        />
+        <KeyArrUpp className="icon-position icon-style" onClick={goToTop} />
       )}
     </div>
   );

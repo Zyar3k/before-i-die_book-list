@@ -1,8 +1,4 @@
-// import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-// import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import PermIdentityTwoToneIcon from "@mui/icons-material/PermIdentityTwoTone";
-import MenuBookTwoToneIcon from "@mui/icons-material/MenuBookTwoTone";
-import StarTwoToneIcon from "@mui/icons-material/StarTwoTone";
+import { StarIcon, PersonIcon, BookIcon } from "../helpers/iconsImport";
 
 const FETCH_SUCCESS = "FETCH_SUCCESS";
 const FETCH_ERROR = "FETCH_ERROR";
@@ -44,17 +40,17 @@ export const starsLabels = ["Admin rank", "Rank"];
 
 export const sortArray = [
   {
-    icon: <MenuBookTwoToneIcon />,
+    icon: <BookIcon />,
     sortBy: "page",
     name: "Ilość stron",
   },
   {
-    icon: <PermIdentityTwoToneIcon />,
+    icon: <PersonIcon />,
     sortBy: "lastName",
     name: "Nazwisko autora",
   },
   {
-    icon: <StarTwoToneIcon />,
+    icon: <StarIcon />,
     sortBy: "rating",
     name: "Ranking",
   },
