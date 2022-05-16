@@ -12,6 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import LoadingProgress from "../common/LoadingProgress/LoadingProgress";
 import { Filter, Search, Sort } from "../components/index";
 import { GlobalContext } from "../context/GlobalProvider";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 const Dashboard = () => {
   const { books, isAdmin, all, searched, filtered } = useContext(GlobalContext);
@@ -87,6 +88,16 @@ const Dashboard = () => {
                       )
                     }
                   />
+                  {book.readed ? (
+                    <CheckCircleOutlineIcon
+                      color="success"
+                      fontSize="small"
+                      sx={{
+                        position: "absolute",
+                        padding: "2px",
+                      }}
+                    />
+                  ) : null}
                 </Card>
               </Link>
             ))}

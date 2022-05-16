@@ -45,15 +45,23 @@ const BookDetails = () => {
     });
   };
 
+  const readingTimeCounter = (data) => {
+    const fullHours = data / 60;
+    const remainingMinutes = data % 60;
+    const readingTime =
+      Math.floor(fullHours) + " godzin " + remainingMinutes + " minut";
+
+    return readingTime;
+  };
+
   const first100letters = (text) => {
     return text.substring(0, 100) + "...";
   };
 
+  readingTimeCounter(book.page);
   useEffect(() => {
     getOneBook(id);
   }, [id]);
-
-  // console.log(first100letters(book.desc));
 
   return (
     <div>
@@ -64,12 +72,11 @@ const BookDetails = () => {
           <div className="bookDetails__info">
             <p className="bookDetails__info--id">ID: {book._id}</p>
             <p className="bookDetails__info--author">{`${book.author.name} ${book.author.lastName}`}</p>
-            <p className="bookDetails__info--listRank">
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
-              <StarIcon />
-            </p>
+            <Tooltip title="Obecność na listach" placement="right">
+              <p className="bookDetails__info--listRank">
+                {multiplyStars(book.list.length)}
+              </p>
+            </Tooltip>
             <p className="bookDetails__info--title">{book.title}</p>
           </div>
           <div className="bookDetails__pages">
@@ -84,7 +91,7 @@ const BookDetails = () => {
               title="Szacowany przelicznik: 200 słów na minutę, czyli 1 strona na 1 minutę czytania."
             >
               <p className="bookDetails__pages--time">
-                <TimerIcon /> 3 godz. 32 min.
+                <TimerIcon /> {readingTimeCounter(book.page)}
               </p>
             </Tooltip>
           </div>
@@ -105,7 +112,7 @@ const BookDetails = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <img src={logoLC} alt="" />
+                <img src={logoLC} alt="lubimy czytac logo" />
               </a>
             </Tooltip>
             <p>
