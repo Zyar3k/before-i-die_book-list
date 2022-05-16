@@ -8,7 +8,6 @@ import {
   Dashboard,
 } from "../admin/index";
 import { Container } from "@mui/material";
-import bgd from "../assets/1600x900.png";
 import { useEffect } from "react";
 
 const Pages = () => {
@@ -22,8 +21,6 @@ const Pages = () => {
       document.body.style.background = "#000428";
       document.body.style.background =
         "linear-gradient(to left,#004e92, #000428)";
-      document.body.style.background =
-        "linear-gradient( to left,#004e92, #000428)";
     }
   }, [path]);
   return (

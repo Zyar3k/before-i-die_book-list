@@ -13,6 +13,7 @@ import LoadingProgress from "../common/LoadingProgress/LoadingProgress";
 import { Filter, Search, Sort } from "../components/index";
 import { GlobalContext } from "../context/GlobalProvider";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import ScrollToTop from "../common/ScrollToTop/ScrollToTop";
 
 const Dashboard = () => {
   const { books, isAdmin, all, searched, filtered } = useContext(GlobalContext);
@@ -102,6 +103,7 @@ const Dashboard = () => {
               </Link>
             ))}
           </Box>
+          <ScrollToTop />
         </>
       )}
     </Stack>

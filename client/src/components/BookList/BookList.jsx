@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ScrollToTop from "../../common/ScrollToTop/ScrollToTop";
 import { GlobalContext } from "../../context/GlobalProvider";
 import BookTile from "../BookTile/BookTile";
 
@@ -27,6 +28,7 @@ const BookList = () => {
           </Link>
         ))}
       </ul>
+      <ScrollToTop />
     </>
   );
 };
