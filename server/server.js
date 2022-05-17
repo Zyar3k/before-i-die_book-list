@@ -1,5 +1,5 @@
-require("express-async-errors");
 const express = require("express");
+require("express-async-errors");
 const dotenv = require("dotenv");
 dotenv.config();
 const helmet = require("helmet");

@@ -4,7 +4,7 @@ const SidebarInfo = () => {
   // TODO: array of links
   return (
     <section className="sidebarInfo">
-      <h1 className="sidebarInfo__title">before I die</h1>
+      {/* <h1 className="sidebarInfo__title">before I die</h1> */}
       <div className="sidebarInfo__info">
         Lista <span>before I die</span> została utworzona na podstawie głosów
         użytkowników stron

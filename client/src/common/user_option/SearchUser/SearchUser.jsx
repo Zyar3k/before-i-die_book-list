@@ -4,6 +4,7 @@ import { CloseIcon } from "../../../helpers/iconsImport";
 import { GlobalContext } from "../../../context/GlobalProvider";
 
 import "../user_option.scss";
+import { Tooltip } from "@mui/material";
 
 const SearchUser = ({ setOptionOpen }) => {
   const { searchBook, clearSearch } = useContext(GlobalContext);
@@ -28,11 +29,17 @@ const SearchUser = ({ setOptionOpen }) => {
         <CloseIcon />
       </button>
       <h3 className="optionName">Wyszukaj książkę</h3>
-      <input
-        className="optionSection__input"
-        type="text"
-        onChange={handleClick}
-      />
+      <Tooltip
+        title="Wyszukaj po tytule lub nazwisku autora"
+        placement="bottom"
+        enterDelay={900}
+      >
+        <input
+          className="optionSection__input"
+          type="text"
+          onChange={handleClick}
+        />
+      </Tooltip>
     </section>
   );
 };

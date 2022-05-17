@@ -1,3 +1,4 @@
+import { Tooltip } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 
 import { GlobalContext } from "../../context/GlobalProvider";
@@ -20,13 +21,21 @@ const BookTile = ({ book }) => {
   }, [onTheList, numberOfLists]);
 
   return (
-    <article className={isBest ? "bookTile best" : "bookTile"}>
-      <h3 className="bookTile__title">{book.title}</h3>
-      <p className="bookTile__author">
-        {`${book.author.name} ${book.author.lastName}`}
-        {isPageShowing && <span className="bookTile__page">({book.page})</span>}
-      </p>
-    </article>
+    <Tooltip
+      arrow
+      title={isBest ? "Obecna na wszystkich listach" : ""}
+      leaveDelay={600}
+    >
+      <article className={isBest ? "bookTile best" : "bookTile"}>
+        <h3 className="bookTile__title">{book.title}</h3>
+        <p className="bookTile__author">
+          {`${book.author.name} ${book.author.lastName}`}
+          {isPageShowing && (
+            <span className="bookTile__page">({book.page})</span>
+          )}
+        </p>
+      </article>
+    </Tooltip>
   );
 };
 

@@ -5,6 +5,7 @@ import { SidebarInfo } from "../../common/";
 import { ExpandLessIcon, ExpandMoreIcon } from "../../helpers/iconsImport";
 
 import "./Sidebar.scss";
+import { Tooltip } from "@mui/material";
 
 const Sidebar = () => {
   const [more, setMore] = useState(false);
@@ -12,15 +13,17 @@ const Sidebar = () => {
   return (
     <aside>
       <SearchUser />
-      <IconButton
-        sx={{
-          color: "white",
-        }}
-        onClick={() => setMore(!more)}
-        aria-label="delete"
-      >
-        {more ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-      </IconButton>
+      <Tooltip title="Więcej" placement="left">
+        <IconButton
+          sx={{
+            color: "white",
+          }}
+          onClick={() => setMore(!more)}
+          aria-label="delete"
+        >
+          {more ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+        </IconButton>
+      </Tooltip>
       {more ? (
         <>
           <FilterUser />
