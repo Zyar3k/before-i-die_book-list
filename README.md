@@ -41,7 +41,7 @@ To run client
 cd before-i-die_book-list
 cd client
 npm i / yarn install
-npm start / yarn start
+npm start / yarn **start**
 ```
 
 To run server

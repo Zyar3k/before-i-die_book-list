@@ -10,7 +10,8 @@ const StarsRating = ({ book, setBook, label }) => {
     setByLabel = "rating";
   }
 
-  const value = book ? book[setByLabel] : 0;
+  const toNumber = parseFloat(book[setByLabel].$numberDecimal);
+  const value = book ? toNumber : 0;
 
   return (
     <Box
@@ -24,10 +25,11 @@ const StarsRating = ({ book, setBook, label }) => {
         name="simple-controlled"
         value={value}
         onChange={(e, newValue) =>
-          setBook({ ...book, [setByLabel]: parseInt(newValue) })
+          setBook({ ...book, [setByLabel]: { $numberDecimal: newValue } })
         }
         icon={<StarIcon fontSize="large" color="primary" />}
         emptyIcon={<StarBorderIcon fontSize="large" />}
+        precision={0.5}
       />
     </Box>
   );

@@ -68,6 +68,10 @@ const BookActions = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const adminValue = book.adminRating.$numberDecimal;
+    const ratingValue = book.rating.$numberDecimal;
+    const adminRating = { $numberDecimal: String(adminValue) };
+    const rating = { $numberDecimal: String(ratingValue) };
     const editedBook = {
       title: book.title,
       author: { name: book.author.name, lastName: book.author.lastName },
@@ -77,8 +81,8 @@ const BookActions = () => {
       link: book.link,
       readed: book.readed,
       available: book.available,
-      adminRating: book.adminRating,
-      rating: book.rating,
+      adminRating,
+      rating,
     };
 
     try {

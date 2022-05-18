@@ -48,11 +48,11 @@ const BookSchema = new mongoose.Schema(
       required: [true, "Please provide user"],
     },
     adminRating: {
-      type: Number,
+      type: mongoose.Types.Decimal128,
       default: 0,
     },
     rating: {
-      type: Number,
+      type: mongoose.Types.Decimal128,
       default: 0,
     },
   },
