@@ -2,7 +2,7 @@ import { StarIcon } from "./iconsImport";
 
 export const multiplyStars = (stars) => {
   let result = [];
-  for (let i = 0; i < stars; i++) {
+  for (let i = 0; i < stars * 2; i++) {
     result.push(<StarIcon key={i} />);
   }
   return result;

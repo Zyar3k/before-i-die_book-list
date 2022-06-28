@@ -30,13 +30,14 @@ const BookDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const getOneBook = (id) => fetchOneBook(id);
-
-  readingTimeCounter(book.page);
   useEffect(() => {
-    getOneBook(id);
+    fetchOneBook(id);
+    console.log("useEffect");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  let bookRating = Number(book.rating?.$numberDecimal);
+  let adminBookRating = Number(book.adminRating?.$numberDecimal);
 
   return (
     <div>
@@ -111,17 +112,13 @@ const BookDetails = () => {
             <p>
               Ocena:
               <span>
-                {multiplyStars(book.rating).length === 0
-                  ? "B/D"
-                  : multiplyStars(book.rating)}
+                {bookRating !== 0 ? multiplyStars(bookRating) : "B/D"}
               </span>
             </p>
             <p>
-              Ocena RQ:{" "}
+              Ocena RQ:
               <span>
-                {multiplyStars(book.adminRating).length === 0
-                  ? "B/D"
-                  : multiplyStars(book.adminRating)}
+                {adminBookRating !== 0 ? multiplyStars(adminBookRating) : "B/D"}
               </span>
             </p>
           </div>
